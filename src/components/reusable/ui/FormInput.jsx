@@ -14,12 +14,12 @@ const StyledInput = styled.input`
   border: none;
 `
 
-export const FormInput = ({ type, id, name, label }) => {
+export const FormInput = ({ type, id, name, label, value, onChange }) => {
 
   return (
     <StyledInputContainer>
       <label htmlFor={id}>{label}
-        <StyledInput type={type} id={id} name={name} />
+        <StyledInput type={type} id={id} name={name} value={value} onChange={onChange} />
       </label>
     </StyledInputContainer>
   )

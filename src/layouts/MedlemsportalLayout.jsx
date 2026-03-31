@@ -2,34 +2,86 @@ import { Outlet, NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 const PageWrapper = styled.div`
- display: flex;
- direction: row;
+  display: flex;
+  min-height: 100vh;
+  background: ${({ theme }) => theme.colors.black};
 `
 
 const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  gap: 12px;
+  padding: 28px 22px;
+  background: ${({ theme }) => theme.colors.darkGrey};
+  width: 25%;
+`
+
+const AvatarRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  margin-bottom: 14px;
+`
+
+const Avatar = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background: ${({ theme }) => theme.colors.lightGrey};
-  min-height: 100vh;
-  width: 250px;
+  flex-shrink: 0;
+`
+
+const MemberName = styled.span`
+  color: ${({ theme }) => theme.colors.lightGrey};
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+`
+
+const StyledNavLink = styled(NavLink)`
+  display: block;
+  padding: 14px 14px;
+  background: ${({ theme }) => theme.colors.darkGrey};
+  color: ${({ theme }) => theme.colors.gold};
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid transparent;
+
+  &.active {
+    border-color: ${({ theme }) => theme.colors.gold};
+  }
 `
 
 const StyledMain = styled.main`
+  flex: 1;
+  background: ${({ theme }) => theme.colors.darkGrey};
+  padding: 40px;
 
+  > h1,
+  > h2,
+  > div > h1,
+  > div > h2 {
+    text-align: center;
+    position: relative;
+    left: -12.5vw;
+  }
 `
 
 export const MedlemsportalLayout = () => {
   return (
     <PageWrapper>
       <Sidebar>
-        { /* [ ]  Small card for member avatar and name */ }
-        <NavLink to="mina-sidor"> Mina Sidor </NavLink>
-        <NavLink to="medlemskap"> Medlemskap </NavLink>
-        <NavLink to="events"> Events </NavLink>
+        <AvatarRow>
+          <Avatar />
+          <MemberName>Name</MemberName>
+        </AvatarRow>
+        <StyledNavLink to="mina-sidor">Mina Sidor</StyledNavLink>
+        <StyledNavLink to="medlemskap">Medlemskap</StyledNavLink>
+        <StyledNavLink to="events">Events</StyledNavLink>
+        <StyledNavLink to="erbjudanden">Erbjudanden</StyledNavLink>
       </Sidebar>
-
       <StyledMain>
         <Outlet />
       </StyledMain>
