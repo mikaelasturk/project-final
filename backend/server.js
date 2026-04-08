@@ -1,3 +1,6 @@
+// [ ] todo: connect user routes, premium user routes, and dashboard routes to server
+// [ ] todo: implement listEndpoints from express-list-endpoints to "/"
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
