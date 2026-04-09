@@ -18,8 +18,10 @@ export const seedingUsers = async () => {
       email: "carolina.oldertz@gmail.com",
       password: bcrypt.hashSync("carolina", salt),
       city: "",
-      isPremium: true
-    }).save()
+      isPremium: true,
+      premiumStartDate: new Date(),
+      premiumEndDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+    }).save();
   }
 
   // Check if Mikaela exists
