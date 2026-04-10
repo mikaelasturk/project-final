@@ -1,4 +1,5 @@
-// [ ] todo: implement user routes for signup and login locally
+// [x] todo: implement user routes for signup and login locally
+// [ ] todo: make route for admin to view members and filter on premium(query)
 
 import express from "express"
 import bcrypt from "bcrypt"
@@ -7,12 +8,57 @@ import { seedingUsers } from "../seedingDatabase/seedingUsers";
 
 const router = express.Router()
 
-router.get("/", async (request, response) => {
-  // Seed users if needed
-  await seedingUsers()
-  
-  const user = await User.find().sort({ memberCreatedAt: "desc"})
+seedingUsers()
+
+router.get("/", async (request, response) => {  
+
+  const user = await User.find().sort({ userCreatedAt: "desc"})
   response.json(user)
+})
+
+// Signup route
+router.post("/signup", async (request, response) => {
+  try {
+    const { email, password, firstName, lastName, city, isPremium } = request.body
+    const existingUser = await User.findOne({ email: email.toLowerCase()})
+
+    if (existingUser) {
+      return response.status(409).json({
+        success: false,
+        message: "An error occurred when creating the user"
+      })
+    }
+
+    const salt = bcrypt.genSaltSync()
+    const hashedPassword = bcrypt.hashSync(password, salt)
+
+    const user = new User({
+      email, 
+      password: 
+      hashedPassword, 
+      firstName, 
+      lastName, 
+      city, 
+      isPremium: isPremium || false 
+    })
+
+    const savedUser = await user.save()
+
+    response.status(201).json({
+      success: true,
+      message: "User created successfully",
+      response: { 
+       savedUser: savedUser
+      }
+    })
+
+  } catch (error) {
+    response.status(400).json({ 
+      success: false,
+      message: "Failed to create user",
+      response: error
+    })
+  }
 })
 
 // Login route
@@ -48,52 +94,5 @@ router.post("/login", async (request, response) => {
      })
   }
 })  
-
-// Signup route
-router.post("/signup", async (request, response) => {
-  try {
-    const { email, password, firstName, lastName, city, isPremium } = request.body
-    const existingUser = await User.findOne({ email: email.toLowerCase()})
-
-    if (existingUser) {
-      return response.status(409).json({
-        success: false,
-        message: "An error occurred when creating the user"
-      })
-    }
-
-    const salt = bcrypt.genSaltSync()
-    const hashedPassword = bcrypt.hashSync(password, salt)
-
-    const user = new User({
-      email, 
-      password: 
-      hashedPassword, 
-      firstName, 
-      lastName, 
-      city, 
-      isPremium: isPremium || false 
-    })
-
-    const savedUser = await user.save()
-
-    response.status(201).json({
-      success: true,
-      message: "User created successfully",
-      response: { 
-       savedUser: savedUser,
-
-      }
-    })
-
-  } catch (error) {
-    response.status(400).json({ 
-      success: false,
-      message: "Failed to create user",
-      response: error
-    })
-  }
-
-})
 
 export default router

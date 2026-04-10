@@ -1,4 +1,4 @@
-// [ ] todo: implement user schema and model with Mongoose
+// [x] todo: implement user schema and model with Mongoose
 // [ ] todo: look into adding enum for city if neccessary
 // [ ] note: do we need ispremium in schema?
 

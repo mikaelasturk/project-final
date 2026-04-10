@@ -6,9 +6,11 @@ import cors from "cors";
 import mongoose from "mongoose";
 import listEndpoints from "express-list-endpoints";
 import userRoutes from "./routes/userRoutes"
+import { authenticateUser } from "./middleware/authMiddleware";
+import dashboardRoutes from "./routes/dashboardRoutes"
 
 
-
+//make new connection in compass!
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
@@ -27,7 +29,10 @@ app.get("/", (req, res) => {
   })
 });
 
+
 app.use("/users", userRoutes)
+app.use("/dashboard/:id", authenticateUser, dashboardRoutes)
+
 
 // Start the server
 app.listen(port, () => {
