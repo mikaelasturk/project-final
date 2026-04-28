@@ -11,7 +11,7 @@ seedingUsers()
 // Dashboard route - protected, only accessible to authenticated users
 
 // route to get user info
-router.get("/", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
   const { _id } = request.params
   const user = await User.findOne({ id: _id })

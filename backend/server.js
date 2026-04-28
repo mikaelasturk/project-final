@@ -11,7 +11,7 @@ import dashboardRoutes from "./routes/dashboardRoutes"
 
 
 //make new connection in compass!
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project";
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/membership";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
 
@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/users", userRoutes)
-app.use("/dashboard/:id", authenticateUser, dashboardRoutes)
+app.use("/dashboard", authenticateUser, dashboardRoutes)
 
 
 // Start the server
