@@ -6,6 +6,7 @@ import { Theme } from "./themes/theme"
 import { GlobalStyle } from "./styles/GlobalStyle"
 import { Layout } from "./components/reusable/Layout"
 import { MedlemsportalLayout } from "./layouts/layouts"
+import { ProtectedRoute } from "./components/reusable/ProtectedRoute"
 import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem} from "./pages/pages"
 
 const AccountHomeTitle = styled.h2`
@@ -29,11 +30,13 @@ export const App = () => {
             <Route path="/om-medlemskap" element={<OmMedlemskap />}/>
             <Route path="/logga-in" element={<LoggaIn />}/>
             <Route path="/bli-medlem" element={<BliMedlem/>}/>
-            <Route path="/konto" element={<MedlemsportalLayout />}>
-              <Route index element={<AccountHomeTitle>Välkommen till ditt konto!</AccountHomeTitle>} />
-              <Route path="mina-sidor" element={<MinaSidor />} />
-              <Route path="medlemskap" element={<Medlemskap />} />
-              <Route path="events" element={<Events />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/konto" element={<MedlemsportalLayout />}>
+                <Route index element={<AccountHomeTitle>Välkommen till ditt konto!</AccountHomeTitle>} />
+                <Route path="mina-sidor" element={<MinaSidor />} />
+                <Route path="medlemskap" element={<Medlemskap />} />
+                <Route path="events" element={<Events />} />
+              </Route>
             </Route>
           </Route>
         </Routes>

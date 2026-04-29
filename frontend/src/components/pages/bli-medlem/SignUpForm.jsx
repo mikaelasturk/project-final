@@ -13,7 +13,7 @@ const StyledContentContainer = styled.div`
 
 `
 
-
+//lägga till input firstname, lastname, city
 
 export const SignUpForm = () => {
   const { logInContent } = useContentStore()

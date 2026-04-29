@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { Button } from "../ui/Button"
 import { useContentStore } from "../../../store/contentStore"
 import { useState } from "react"
@@ -45,7 +45,14 @@ const StyledButtonWrapper = styled.div`
 export const Navbar = () => {
   const content = useContentStore((state) => state.content)
   const [expanded, setExpanded] = useState(false)
-  
+  const navigate = useNavigate()
+  const isLoggedIn = !!JSON.parse(localStorage.getItem("user"))?.accessToken
+
+  const handleLogout = () => {
+    localStorage.removeItem("user")
+    navigate("/logga-in")
+  }
+
   const handleClick = () => {
     setExpanded(prev => !prev)
   }
@@ -80,8 +87,10 @@ export const Navbar = () => {
       </StyledNavContent>
     </StyledNavContentContainer>
       <StyledButtonWrapper>
-        <NavLink to="/logga-in"><Button text={content.buttons.logIn} variant="omMedlemskap-login"/>
-        </NavLink>
+        {isLoggedIn
+          ? <Button onClick={handleLogout} text="Logga ut" variant="omMedlemskap-login" />
+          : <NavLink to="/logga-in"><Button text={content.buttons.logIn} variant="omMedlemskap-login" /></NavLink>
+        }
       </StyledButtonWrapper>
     </StyledNavbar>
   )
