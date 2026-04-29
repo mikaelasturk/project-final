@@ -4,7 +4,7 @@
 import express from "express"
 //import { getDashboard } from "../controllers/dashboardController.js"
 import { User } from "../models/User"
-import { seedingUsers } from "../seedingDatabase/seedingUsers";
+import { seedingUsers } from "../seedingDatabase/seedingUsers"
 
 const router = express.Router()
 seedingUsers()
@@ -13,8 +13,8 @@ seedingUsers()
 // route to get user info
 router.get("/:id", async (request, response) => {
   try {
-  const { _id } = request.params
-  const user = await User.findOne({ id: _id })
+  const { id } = request.params
+  const user = await User.findById(id)
 
   if (user) {
     response.status(302).json({
