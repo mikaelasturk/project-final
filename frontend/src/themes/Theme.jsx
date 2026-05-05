@@ -12,14 +12,14 @@ export const Theme = {
   // [ ] gå igenom vad som använder colors och ändra till strukturen nedan
 
   colors: {
-    darkPurple: '#442E57',     //grafisk profil
-    mediumPurple: '#574368', //hemsidan
-    lightPurple: '#CFCCE4', //grafisk profil
-    gold: '#CDB56C', //grafisk profil
-    darkGrey: '#353333', //hemsidan
-    lightGrey: '#C6C6C7', //påhittad
+  //   darkPurple: '#442E57',     //grafisk profil
+  //   mediumPurple: '#574368', //hemsidan
+  //   lightPurple: '#CFCCE4', //grafisk profil
+  //   gold: '#CDB56C', //grafisk profil
+  //   darkGrey: '#353333', //hemsidan
+  //   lightGrey: '#C6C6C7', //påhittad
     black: '#000000',         
-    white: '#ffffff'
+  //   white: '#ffffff'
   },
 
   // --darkPurple: '#442E57', //from graphic design
@@ -63,8 +63,35 @@ export const Theme = {
     form: {
       bgClr: 'var(--darkPurple)',
       txtClr: 'var(--white)',
-      inputBgClr: 'var(--lightGrey)',
+      inputBgClr: 'var(--lightPurple)',
       inputTxtClr: 'var(--darkGrey)',
+    },
+    buttons: {
+      loggaIn: {
+        bgClr: 'var(--gold)',
+        txtClr: 'var(--black)',
+      },
+      gåTillbaka: {
+        bgClr: 'var(--lightGrey)',
+        txtClr: 'var(--black)',
+      },
+    },
+  },
+  signUp: {
+    bgClr: 'var(--mediumPurple)',
+    txtClr: '',
+    cards: {
+      bgClr: '',
+    },
+    form: {
+      bgClr: 'var(--darkPurple)',
+      txtClr: 'var(--white)',
+      inputBgClr: 'var(--lightPurple)',
+      inputTxtClr: 'var(--darkGrey)',
+      inputBgClrHover: 'var(--mediumPurple)',
+      inputTxtClrHover: 'var(--white)',
+      inputBgClrSelected: 'var(--darkPurple)',
+      inputTxtClrSelected: 'var(--white)',
     },
     buttons: {
       loggaIn: {

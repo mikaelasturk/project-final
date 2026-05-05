@@ -96,14 +96,16 @@ export const LogInForm = ({ handleLogin }) => {
         onChange={handleChange} 
         type="email" 
         id="email" 
-        name="email" 
+        name="email"
+        placeholder={form.emailPlaceholder}
         value={formData.email}
         label={form.email} />
         <FormInput 
         onChange={handleChange} 
         type="password" 
         id="password" 
-        name="password" 
+        name="password"
+        placeholder={form.passwordPlaceholder}
         value={formData.password}
         label={form.password} />
       </StyledContentContainer>
