@@ -17,7 +17,7 @@ router.get("/:id", async (request, response) => {
   const user = await User.findById(id)
 
   if (user) {
-    response.status(302).json({
+    response.status(200).json({
       message: "Hej!!!! Välkommen till din hemliga dashboard, " + user.firstName + "!!!",
       user
     })
