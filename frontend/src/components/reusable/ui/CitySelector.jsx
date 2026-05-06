@@ -2,7 +2,8 @@ import styled from "styled-components"
 import { useContentStore } from '../../../store/contentStore'
 import Select from "react-select"
 import swedishCities from "../../../data/swedishCities.json"
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
+import { useFormStore } from "../../../store/formStore"
 
 // [ ] TODO: styla Select-komponenten så att den matchar resten av formuläret, t.ex. genom att ändra bakgrundsfärg, kantfärg och textfärg. Använd gärna props för att göra det enkelt att anpassa stilen. Ljuslila bakgrund på option?
 
@@ -12,6 +13,18 @@ const StyledLabel = styled.label`
   font-size: 15px;
   margin-top: 15px;
 `
+
+// Klass	Vad det är
+// __placeholder	Platshållartexten
+// __single-value	Det valda värdet som visas
+// __input-container	Wrappern runt textinputen
+// __input	Själva input-elementet
+// __dropdown-indicator	Pilen/ikonen till höger
+// __indicator-separator	Strecket bredvid pilen
+// __clear-indicator	X-knappen (om isClearable)
+// __menu-list	Listan inuti menyn (scrollbar)
+// __no-options-message	Texten när inga alternativ matchar
+// __value-container	Wrappern runt det valda värdet
 
 const StyledSelect = styled(Select)`
   & .select__control {
@@ -56,15 +69,10 @@ const StyledSelect = styled(Select)`
 `
 
 export const CitySelector = ({ label, id, name }) => {
-  
-  const [selectedCity, setSelectedCity] = useState(null)
+  const { formData, setField } = useFormStore()
   const { logInContent } = useContentStore()
   const { form } = logInContent
   const cityOptions = useMemo(() => swedishCities, [])
-
-  const handleCity = (selectedOption) => {
-    setSelectedCity(selectedOption)
-  }
 
 
   return (
@@ -75,8 +83,8 @@ export const CitySelector = ({ label, id, name }) => {
         inputId={id}
         name={name}
         options={cityOptions}
-        value={selectedCity}
-        onChange={handleCity}
+        value={formData.city}
+        onChange={(option) => setField('city', option)}
         placeholder={form.cityPlaceholder}
         isSearchable={true}
         isClearable={true}

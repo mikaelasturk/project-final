@@ -19,7 +19,7 @@ export const Theme = {
   //   darkGrey: '#353333', //hemsidan
   //   lightGrey: '#C6C6C7', //påhittad
     black: '#000000',         
-  //   white: '#ffffff'
+    white: '#ffffff'
   },
 
   // --darkPurple: '#442E57', //from graphic design

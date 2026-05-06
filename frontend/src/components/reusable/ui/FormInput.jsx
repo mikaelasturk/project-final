@@ -16,7 +16,7 @@ const StyledInput = styled.input`
   width: 100%;
   padding: 8px;
   border-radius: 3px;
-  border: none;
+  border: 2px solid transparent;
   appearance: none;
   -webkit-appearance: none;
 
@@ -30,10 +30,10 @@ const StyledInput = styled.input`
     color: ${theme.signUp.form.inputTxtClr};
   `}
 
-   &:focus,
+  &:focus,
   &:focus-visible {
-    outline: none;
-    border: 2px solid orange;
+    border: 2px solid #442E57;
+    outline: 2px solid orange;
   }
 `
 
@@ -43,7 +43,7 @@ const StyledTextarea = styled.textarea`
   padding: 8px;
   width: 100%;
   border-radius: 3px;
-  border: none;
+  border: 2px solid transparent;
   appearance: none;
   -webkit-appearance: none;
   background: ${({theme}) => theme.signUp.form.inputBgClr};
@@ -51,8 +51,8 @@ const StyledTextarea = styled.textarea`
 
   &:focus,
   &:focus-visible {
-    outline: none;
-    border: 2px solid orange;
+    border: 2px solid #442E57;
+    outline: 2px solid orange;
   }
 
 `

@@ -1,6 +1,10 @@
+// [ ] TODO - Lägg till state och onChange för checkboxarna
+// [ ] TODO - Lägg till props så att Fieldset kan återanvändas i EditProfile?
+
 //import { FormInput } from "./FormInput";
 import styled from 'styled-components';
 import { useContentStore } from '../../../store/contentStore'
+import { useFormStore } from '../../../store/formStore';
 
 const StyledFieldset = styled.fieldset`
   margin-top: 15px;
@@ -42,8 +46,11 @@ const StyledCheckbox = styled.div`
 `
 
 export const Fieldset = () => {
+  const { formData, setWorkStatus, setOtherText } = useFormStore()
   const { logInContent } = useContentStore()
   const { form } = logInContent;
+  
+
 
   return (
    <StyledFieldset>
@@ -56,6 +63,8 @@ export const Fieldset = () => {
           id="worker" 
           name="workStatus" 
           value="worker" 
+          checked={formData.workStatus.worker}
+          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
         />
         <label htmlFor="worker">{form.workStatus.a}</label>
       </StyledCheckbox>
@@ -66,6 +75,8 @@ export const Fieldset = () => {
           id="owner" 
           name="workStatus" 
           value="owner" 
+          checked={formData.workStatus.owner}
+          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
         />
         <label htmlFor="owner">{form.workStatus.b}</label>
       </StyledCheckbox>
@@ -76,6 +87,8 @@ export const Fieldset = () => {
           id="startUp" 
           name="workStatus" 
           value="startUp"
+          checked={formData.workStatus.startUp}
+          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
         />
         <label htmlFor="startUp">{form.workStatus.c}</label>
       </StyledCheckbox>
@@ -86,6 +99,8 @@ export const Fieldset = () => {
           id="searching" 
           name="workStatus" 
           value="searching"
+          checked={formData.workStatus.searching}
+          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
         />
         <label htmlFor="searching">{form.workStatus.d}</label>
       </StyledCheckbox>
@@ -93,12 +108,23 @@ export const Fieldset = () => {
       <StyledCheckbox>
         <input 
           type="checkbox" 
-          id="workStatus" 
+          id="other" 
           name="workStatus" 
           value="other"
+          checked={formData.workStatus.other}
+          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
         /> 
         <label htmlFor="other">{form.workStatus.e}</label>
       </StyledCheckbox>
+
+      {formData.workStatus.other && (
+        <input
+          type="text"
+          placeholder="Beskriv din situation..."
+          onChange={(event) => setOtherText(event.target.value)}
+          value={formData.workStatus.otherText}
+        />
+      )}
 
     </StyledFieldset>
   );
