@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { MembershipCard } from "../components/pages/om-medlemskap/MembershipCard"
 
 const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gold};
+  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;

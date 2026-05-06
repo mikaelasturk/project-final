@@ -6,7 +6,7 @@ import { API_URL } from "../../Constants"
 const PageWrapper = styled.div`
   display: flex;
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.konto.bgClr};
 `
 
 const Sidebar = styled.aside`
@@ -30,12 +30,12 @@ const Avatar = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.lightGrey};
+  background: ${({ theme }) => theme.konto.sidebar.avatar.avatarClr};
   flex-shrink: 0;
 `
 
 const MemberName = styled.span`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.sidebar.avatar.txtClr};
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -44,22 +44,28 @@ const MemberName = styled.span`
 const StyledNavLink = styled(NavLink)`
   display: block;
   padding: 14px 14px;
-  background: ${({ theme }) => theme.colors.darkGrey};
-  color: ${({ theme }) => theme.colors.gold};
+  background: ${({ theme }) => theme.konto.sidebar.links.bgClr};
+  color: ${({ theme }) => theme.konto.sidebar.links.txtClr};
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border: 1px solid transparent;
 
   &.active {
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.konto.sidebar.links.borderClrActive};
   }
 `
 
 const StyledMain = styled.main`
-  flex: 1;
-  background: ${({ theme }) => theme.colors.darkGrey};
+  flex: 1; // Tar upp återstående utrymme bredvid sidomenyn
+  background: ${({ theme }) => theme.konto.mainPage.bgClr};
   padding: 40px;
+
+
+  //> h1, > h2, > div > h1, > div > h2
+  //De träffar rubriker som är:
+  //direkta barn till huvudytan
+  // rubriker inne i en direkt underliggande div
 
   > h1,
   > h2,
@@ -67,7 +73,12 @@ const StyledMain = styled.main`
   > div > h2 {
     text-align: center;
     position: relative;
-    left: -12.5vw;
+    color: ${({ theme }) => theme.konto.mainPage.headingClr};
+    left: -12.5vw; //Rubrikerna flyttas 12.5% till vänster av vp. För att kompensera sidomenyn (25% bred), så rubriken upplevs centrerad över hela sidan istället för bara main page.
+    > p,
+    > div > div > p {
+      color: ${({ theme }) => theme.konto.mainPage.txtClr};
+    }
   }
 `
 

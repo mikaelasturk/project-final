@@ -18,12 +18,13 @@ const StyledForm = styled.form`
 export const SignUpForm = () => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
-  const { formData, setField, resetData } = useFormStore()
+  const { signUpData, setSignUpField, setSignUpSubmitting, resetSignUp } = useFormStore()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formData)
-    resetData()
+    console.log(signUpData)
+    setSignUpSubmitting(true)
+    resetSignUp()
   }
 
   return (
@@ -34,9 +35,9 @@ export const SignUpForm = () => {
         id="firstName" 
         name="firstName"
         required
-        value={formData.firstName}
+        value={signUpData.firstName}
         placeholder={form.firstNamePlaceholder}
-        onChange={(event) => setField('firstName', event.target.value)}
+        onChange={(event) => setSignUpField('firstName', event.target.value)}
         label={form.firstName} />
       <FormInput 
         variant="signup"
@@ -44,9 +45,9 @@ export const SignUpForm = () => {
         id="lastName" 
         name="lastName"
         required
-        value={formData.lastName}
+        value={signUpData.lastName}
         placeholder={form.lastNamePlaceholder}
-        onChange={(event) => setField('lastName', event.target.value)}
+        onChange={(event) => setSignUpField('lastName', event.target.value)}
         label={form.lastName} />
       <FormInput 
         variant="signup"
@@ -54,9 +55,9 @@ export const SignUpForm = () => {
         id="email" 
         name="email" 
         required
-        value={formData.email}
+        value={signUpData.email}
         placeholder={form.emailPlaceholder}
-        onChange={(event) => setField('email', event.target.value)}
+        onChange={(event) => setSignUpField('email', event.target.value)}
         label={form.email} />
       <FormInput 
         variant="signup"
@@ -64,9 +65,9 @@ export const SignUpForm = () => {
         id="password" 
         name="password" 
         required
-        value={formData.password}
+        value={signUpData.password}
         placeholder={form.passwordPlaceholder}
-        onChange={(event) => setField('password', event.target.value)}
+        onChange={(event) => setSignUpField('password', event.target.value)}
         label={form.password} />
       <CitySelector 
         label={form.city} 
@@ -80,14 +81,14 @@ export const SignUpForm = () => {
         id="justifyMembership" 
         name="justifyMembership" 
         required
-        value={formData.justifyMembership}
-        onChange={(event) => setField('justifyMembership', event.target.value)}
+        value={signUpData.justifyMembership}
+        onChange={(event) => setSignUpField('justifyMembership', event.target.value)}
         label={form.justifyMembershipLabel} />
       <Fieldset />
       <Button
         type="submit"
-        text={form.button.signUp} 
-        variant="loggaIn-login"/>
+        text={signUpData.isSubmitting ? "Skapar konto..." : form.button.signUp} 
+        variant="loggaIn-login" disabled={signUpData.isSubmitting}/>
     </StyledForm>
   )
 }

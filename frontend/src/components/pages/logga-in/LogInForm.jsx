@@ -8,7 +8,7 @@ import { Button } from '../../reusable/ui/Button'
 import { FormInput } from "../../reusable/ui/FormInput"
 //import { CardTitle } from '../components/reusable/typography/typography'
 import { API_URL } from '../../../../Constants'
-import { useState } from 'react'
+import { useFormStore } from '../../../store/formStore'
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,39 +23,30 @@ const StyledContentContainer = styled.div`
 export const LogInForm = ({ handleLogin }) => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
-
-  //göra en useState för formData
-
-  const [ formData, setFormData ] = useState({
-    email: '',
-    password: ''
-  })
-
-  const [ error, setError ] = useState('')
-  const [ isSubmitting, setIsSubmitting ] = useState(false)
+  const { loginData, setLoginField, setLoginError, setLoginSubmitting, resetLogin } = useFormStore()
 
   //göra en handleSubmit
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log("Submit klickad", formData)
+    console.log("Submit klickad", loginData)
 
-    if (!formData.email || !formData.password) {
-      setError("Please fill in all fields")
+    if (!loginData.email || !loginData.password) {
+      setLoginError("Please fill in all fields")
       // setError kopplat till backend error response?
       return
     }
 
-    setError('')
-    setIsSubmitting(true)
+    setLoginError('')
+    setLoginSubmitting(true)
 
       //fetch API med method POST
     try {
       const response = await fetch(`${API_URL}/users/login`, {
         method: "POST",
         body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
+          email: loginData.email,
+          password: loginData.password
         }),
         headers: {
           "Content-Type": "application/json"
@@ -75,44 +66,44 @@ export const LogInForm = ({ handleLogin }) => {
       //handledLogin som "skapas" i login page
       if (handleLogin) {
         handleLogin(data.response)
+        resetLogin()
       }
     } catch (error) {
       // Error response från backend (?)
-      setError(error.message || "Invalid email or password")
+      setLoginError(error.message || "Invalid email or password")
     } finally {
-      setIsSubmitting(false)
+      setLoginSubmitting(false)
     }
-  }
-  //handlechange för inputfält
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value}))
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledContentContainer>
         <FormInput 
-        onChange={handleChange} 
-        type="email" 
-        id="email" 
-        name="email"
-        placeholder={form.emailPlaceholder}
-        value={formData.email}
-        label={form.email} />
+          onChange={(event) => setLoginField('email', event.target.value)} 
+          type="email" 
+          id="email" 
+          name="email"
+          placeholder={form.emailPlaceholder}
+          value={loginData.email}
+          label={form.email} 
+        />
         <FormInput 
-        onChange={handleChange} 
-        type="password" 
-        id="password" 
-        name="password"
-        placeholder={form.passwordPlaceholder}
-        value={formData.password}
-        label={form.password} />
+          onChange={(event) => setLoginField('password', event.target.value)} 
+          type="password" 
+          id="password" 
+          name="password"
+          placeholder={form.passwordPlaceholder}
+          value={loginData.password}
+          label={form.password} 
+        />
       </StyledContentContainer>
-      {error && <p>{error}</p>}
-      <Button type="submit" 
-      text={isSubmitting ? "Loggar in..." : form.button.logIn}
-      variant="loggaIn-login" disabled={isSubmitting}/>
+      {loginData.error && <p>{loginData.error}</p>}
+      <Button 
+        type="submit" 
+        text={loginData.isSubmitting ? "Loggar in..." : form.button.logIn}
+        variant="loggaIn-login" disabled={loginData.isSubmitting}
+      />
     </StyledForm>
 
   )

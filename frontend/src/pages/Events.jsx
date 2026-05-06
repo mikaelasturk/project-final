@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gold};
+  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;
@@ -17,7 +17,7 @@ const Grid = styled.div`
 `
 
 const Card = styled.div`
-  background: ${({ theme }) => theme.colors.darkGrey};
+  background: ${({ theme }) => theme.konto.mainPage.events.cards.bgClr};
   border: 1px solid #444;
   display: flex;
   flex-direction: column;
@@ -36,8 +36,8 @@ const DateBadge = styled.span`
   position: absolute;
   top: 6px;
   right: 6px;
-  background: ${({ theme }) => theme.colors.mediumPurple};
-  color: ${({ theme }) => theme.colors.lightGrey};
+  background: ${({ theme }) => theme.konto.mainPage.events.cards.tag.bgClr};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.tag.txtClr};
   font-size: 14px;
   padding: 4px 8px;
 `
@@ -59,7 +59,7 @@ const CardBottomRow = styled.div`
 `
 
 const CardCity = styled.p`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.textClr.p};
   font-size: 18px;
 `
 
@@ -70,26 +70,26 @@ const CardBottomRight = styled.div`
 `
 
 const CardTitle = styled.h3`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.textClr.p};
   font-size: 20px;
   font-weight: 600;
 `
 
 const CardDesc = styled.p`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.textClr.p};
   font-size: 16px;
   line-height: 1.4;
   margin-bottom: 100px;
 `
 
 const CardMeta = styled.p`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.textClr.p};
   font-size: 18px;
 `
 
 const AnmalBtn = styled.button`
-  background: ${({ theme }) => theme.colors.gold};
-  color: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.konto.mainPage.events.cards.button.bgClr};
+  color: ${({ theme }) => theme.konto.mainPage.events.cards.button.txtClr};
   border: none;
   font-size: 15px;
   padding: 8px 14px;

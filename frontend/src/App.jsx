@@ -2,12 +2,12 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
-import { Theme } from "./themes/theme"
+import { Theme } from "./themes/Theme"
 import { GlobalStyle } from "./styles/GlobalStyle"
 import { Layout } from "./components/reusable/Layout"
 import { MedlemsportalLayout } from "./layouts/layouts"
 import { ProtectedRoute } from "./components/reusable/ProtectedRoute"
-import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem} from "./pages/pages"
+import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem, Erbjudanden} from "./pages/pages"
 
 const AccountHomeTitle = styled.h2`
   color: ${({ theme }) => theme.colors.gold};
@@ -36,6 +36,7 @@ export const App = () => {
                 <Route path="mina-sidor" element={<MinaSidor />} />
                 <Route path="medlemskap" element={<Medlemskap />} />
                 <Route path="events" element={<Events />} />
+                <Route path="erbjudanden" element={<Erbjudanden />} />
               </Route>
             </Route>
           </Route>

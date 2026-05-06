@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const getInitialFormData = () => ({
+const getInitialSignUpData = () => ({
   firstName: '',
   lastName: '',
   email: '',
@@ -14,32 +14,74 @@ const getInitialFormData = () => ({
     searching: false,
     other: false,
     otherText: ''
-  }
+  },
+  error: '',
+  isSubmitting: false
+})
+
+const getInitialLoginData = () => ({
+  email: '',
+  password: '',
+  error: '',
+  isSubmitting: false
 })
 
 export const useFormStore = create((set) => ({
-  formData: getInitialFormData(),
 
-  setField: (field, value) => 
+  //signup form state
+  signUpData: getInitialSignUpData(),
+
+  setSignUpField: (field, value) => 
     set((state) => ({
-      formData: { ...state.formData, [field]: value}
+      signUpData: { ...state.signUpData, [field]: value}
     })),
 
   setWorkStatus: (value, checked) => 
     set((state) => ({
-      formData: {
-        ...state.formData, 
-        workStatus: {...state.formData.workStatus, [value]: checked}
+      signUpData: {
+        ...state.signUpData, 
+        workStatus: {...state.signUpData.workStatus, [value]: checked}
       }
     })),
 
   setOtherText: (text) => 
     set((state) => ({
-      formData: {
-        ...state.formData,
-        workStatus: {...state.formData.workStatus, otherText: text}
+      signUpData: {
+        ...state.signUpData,
+        workStatus: {...state.signUpData.workStatus, otherText: text}
       }
     })),
-    
-  resetData: () => set({ formData: getInitialFormData() }),
+
+  setSignUpError: (error) =>
+    set((state) => ({
+      signUpData: {...state.signUpData, error}
+    })),
+
+  setSignUpSubmitting: (isSubmitting) =>
+    set((state) => ({
+      signUpData: {...state.signUpData, isSubmitting}
+    })),
+
+  resetSignUp: () => set({ signUpData: getInitialSignUpData() }),
+
+  //login form state
+  loginData: getInitialLoginData(),
+
+  setLoginField: (field, value) =>
+    set((state) => ({
+      loginData: {...state.loginData, [field]: value}
+    })),
+  
+  setLoginError: (error) =>
+    set((state) => ({
+      loginData: {...state.loginData, error}
+    })),
+
+  setLoginSubmitting: (isSubmitting) =>
+    set((state) => ({
+      loginData: {...state.loginData, isSubmitting}
+    })),
+
+  resetLogin: () => set({ loginData: getInitialLoginData()} )
+
 }))

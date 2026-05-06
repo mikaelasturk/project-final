@@ -1,9 +1,9 @@
-import { useState } from "react"
 import styled from "styled-components"
 import { FormInput } from "../components/reusable/ui/FormInput"
+import { useFormStore } from "../store/formStore"
 
 const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gold};
+  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;
@@ -27,7 +27,7 @@ const Card = styled.div`
   position: relative;
 
   label {
-    color: ${({ theme }) => theme.colors.lightGrey};
+    color: ${({ theme }) => theme.konto.mainPage.txtClr};
     font-size: 15px;
   }
 
@@ -39,7 +39,7 @@ const Card = styled.div`
 `
 
 const SectionTitle = styled.h3`
-  color: ${({ theme }) => theme.colors.lightGrey};
+      color: ${({ theme }) => theme.konto.mainPage.sectionTitleClr};
   font-size: 22px;
   font-weight: 400;
   margin-bottom: 8px;
@@ -56,8 +56,8 @@ const SectionHeader = styled.div`
 
 const EditButton = styled.button`
   background: transparent;
-  border: 1px solid ${({ theme }) => theme.colors.gold};
-  color: ${({ theme }) => theme.colors.gold};
+  border: 1px solid ${({ theme }) => theme.konto.mainPage.minaSidor.form.editButton.borderClr};
+  color: ${({ theme }) => theme.konto.mainPage.minaSidor.form.editButton.txtClr};
   font-size: 13px;
   padding: 4px 12px;
   border-radius: 20px;
@@ -65,9 +65,9 @@ const EditButton = styled.button`
 `
 
 const SaveButton = styled.button`
-  background: ${({ theme }) => theme.colors.gold};
+  background: ${({ theme }) => theme.konto.mainPage.minaSidor.form.saveButton.bgClr};
   border: none;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.konto.mainPage.minaSidor.form.saveButton.txtClr};
   font-size: 13px;
   padding: 8px 24px;
   border-radius: 20px;
@@ -76,14 +76,14 @@ const SaveButton = styled.button`
 `
 
 const ValueText = styled.p`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.minaSidor.form.txtClr};
   font-size: 16px;
   padding: 8px 0;
   border-bottom: 1px solid #444;
 `
 
 const FieldLabel = styled.span`
-  color: ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.konto.mainPage.minaSidor.form.txtClr};
   font-size: 13px;
   opacity: 0.7;
   display: block;
@@ -91,33 +91,18 @@ const FieldLabel = styled.span`
 `
 
 export const MinaSidor = () => {
-  const [editing, setEditing] = useState(false)
-  const [formData, setFormData] = useState({
-    namn: "",
-    email: "",
-    bank: "",
-    xxx: "",
-  })
-  const [savedData, setSavedData] = useState({
-    namn: "Test Testersson",
-    email: "test.testersson@example.com",
-    bank: "Bank of Test",
-    xxx: "",
-  })
+  const editing = useFormStore((s) => s.minaSidorEditing)
+  const formData = useFormStore((s) => s.minaSidorDraft)
+  const savedData = useFormStore((s) => s.minaSidorSaved)
+  const startEditing = useFormStore((s) => s.startEditingMinaSidor)
+  const setField = useFormStore((s) => s.setMinaSidorField)
+  const save = useFormStore((s) => s.saveMinaSidor)
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleEdit = () => {
-    setFormData(savedData)
-    setEditing(true)
-  }
-
+  const handleChange = (e) => setField(e.target.name, e.target.value)
+  const handleEdit = () => startEditing()
   const handleSave = (e) => {
     e.preventDefault()
-    setSavedData(formData)
-    setEditing(false)
+    save()
   }
 
   return (

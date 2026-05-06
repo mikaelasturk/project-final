@@ -69,7 +69,7 @@ const StyledSelect = styled(Select)`
 `
 
 export const CitySelector = ({ label, id, name }) => {
-  const { formData, setField } = useFormStore()
+  const { signUpData, setSignUpField } = useFormStore()
   const { logInContent } = useContentStore()
   const { form } = logInContent
   const cityOptions = useMemo(() => swedishCities, [])
@@ -83,8 +83,8 @@ export const CitySelector = ({ label, id, name }) => {
         inputId={id}
         name={name}
         options={cityOptions}
-        value={formData.city}
-        onChange={(option) => setField('city', option)}
+        value={signUpData.city}
+        onChange={(option) => setSignUpField('city', option)}
         placeholder={form.cityPlaceholder}
         isSearchable={true}
         isClearable={true}

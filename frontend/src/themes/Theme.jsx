@@ -1,4 +1,4 @@
-//[x] Mikaela ska kolla upp hur vi ska strukturera theme colors efter pages.
+// [x] Mikaela ska kolla upp hur vi ska strukturera theme colors efter pages.
 
 export const Theme = {
 
@@ -12,12 +12,12 @@ export const Theme = {
   // [ ] gå igenom vad som använder colors och ändra till strukturen nedan
 
   colors: {
-  //   darkPurple: '#442E57',     //grafisk profil
-  //   mediumPurple: '#574368', //hemsidan
-  //   lightPurple: '#CFCCE4', //grafisk profil
-  //   gold: '#CDB56C', //grafisk profil
-  //   darkGrey: '#353333', //hemsidan
-  //   lightGrey: '#C6C6C7', //påhittad
+    // darkPurple: '#442E57',     //grafisk profil
+    // mediumPurple: '#574368', //hemsidan
+    // lightPurple: '#CFCCE4', //grafisk profil
+    // gold: '#CDB56C', //grafisk profil
+    // darkGrey: '#353333', //hemsidan
+    // lightGrey: '#C6C6C7', //påhittad
     black: '#000000',         
     white: '#ffffff'
   },
@@ -77,6 +77,7 @@ export const Theme = {
       },
     },
   },
+
   signUp: {
     bgClr: 'var(--mediumPurple)',
     txtClr: '',
@@ -104,4 +105,145 @@ export const Theme = {
       },
     },
   },
+
+  konto: {
+    bgClr: 'var(--darkGrey)',
+    txtClr: 'var(--white)',
+    txtClrH1: 'var(--gold)',
+
+    sidebar: {
+      avatar: {
+        bgClr: 'inherit',
+        avatarClr: 'var(--gold)',
+        txtClr: 'var(--gold)',
+      },
+      links: {
+        bgClr: 'inherit',
+        txtClr: 'var(--gold)',
+        borderClrActive: 'var(--gold)',
+        hoverBgClr: '',
+        hoverTxtClr: '',
+        hoverBorderClr: '',
+      },
+    },
+
+    mainPage: {
+      pageTitleClr: "var(--gold)",
+      sectionTitleClr: "var(--lightGrey)",
+      bgClr: 'var(--darkGrey)', 
+      txtClr: 'var(--white)',
+
+      minaSidor: {
+        form: {
+            bgClr: 'inherit', 
+            txtClr: 'var(--white)',
+
+            editButton: {
+            bgClr: 'var(--darkGrey)',
+            txtClr: 'var(--gold)',
+            borderClr: 'var(--gold)',
+            hoverBgClr: '',
+            hoverTextClr: '',
+            hoverBorderClr: '',
+            },
+
+            saveButton: {
+              bgClr: 'var(--gold)',
+              txtClr: 'var(--darkGrey)',
+              borderClr: '',
+              hoverBgClr: '',
+              hoverTextClr: '',
+              hoverBorderClr: '',
+            },
+          },
+        },
+
+      medlemskap: {
+        cards: {
+          bgClr: 'var(--darkPurple)',
+          textClr: {
+            h2: 'var(--white)',
+            p: 'var(--white)',
+            tag: 'var(--white)',
+          },
+          button: {
+            bgClr: 'var(--gold)',
+            txtClr: 'var(--darkGrey)',
+            borderClr: '',
+            hoverBgClr: '',
+            hoverTextClr: '',
+            hoverBorderClr: '',
+          },
+          checkmark: {
+            bgClr: 'var(--darkGrey)',
+            symbolClr: 'var(--gold)',
+          },
+        },
+      },
+
+      events: {
+        cards: {
+          bgClr: 'var(--darkGrey)',
+          textClr: {
+            h2: 'var(--white)',
+            p: 'var(--white)',
+            price: 'var(--white)',
+          },
+          button: {
+            bgClr: 'var(--gold)',
+            txtClr: 'var(--darkGrey)',
+            borderClr: '',
+            hoverBgClr: '',
+            hoverTextClr: '',
+            hoverBorderClr: '',
+          },
+          tag: {
+            bgClr: 'var(--mediumPurple)',
+            txtClr: 'var(--white)',
+          },
+        },
+      },
+
+      erbjudanden: {  
+        cards: {
+          bgClr: '',
+          textClr: {
+            h2: '',
+            p: '',
+          },
+          button: {
+            bgClr: '',
+            txtClr: '',
+            borderClr: '',
+            hoverBgClr: '',
+            hoverTextClr: '',
+            hoverBorderClr: '',
+          },
+          tag: {
+            bgClr: '',
+            txtClr: '',
+          },
+        },
+      },
+    },
+  },
+
+  form: {
+    bgClr: 'var(--darkPurple)',
+    txtClr: 'var(--white)',
+    inputBgClr: 'var(--lightPurple)',
+    inputTxtClr: 'var(--darkGrey)',
+    inputBgClrHover: 'var(--mediumPurple)',
+    inputTxtClrHover: 'var(--white)',
+    inputBgClrSelected: 'var(--darkPurple)',
+    inputTxtClrSelected: 'var(--white)',
+  },
+
+  buttons: {
+    loggaIn: {
+      bgClr: 'var(--gold)',
+      txtClr: 'var(--black)',
+    },
+  }
 }
+
