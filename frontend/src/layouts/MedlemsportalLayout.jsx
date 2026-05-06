@@ -1,5 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom"
 import styled from "styled-components"
+import { useState, useEffect } from "react"
+import { API_URL } from "../../Constants"
 
 const PageWrapper = styled.div`
   display: flex;
@@ -70,12 +72,27 @@ const StyledMain = styled.main`
 `
 
 export const MedlemsportalLayout = () => {
+  const user = JSON.parse(localStorage.getItem("user"))
+  const [firstName, setFirstName] = useState("")
+
+  useEffect(() => {
+    fetch(`${API_URL}/dashboard/${user.id}`, {
+      headers: { "Authorization": `Bearer ${user.accessToken}` }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Dashboard response:", data)
+        if (data.user?.firstName) setFirstName(data.user.firstName)
+      })
+      .catch(() => {})
+  }, [])
+
   return (
     <PageWrapper>
       <Sidebar>
         <AvatarRow>
           <Avatar />
-          <MemberName>Name</MemberName>
+          <MemberName>{firstName}</MemberName>
         </AvatarRow>
         <StyledNavLink to="mina-sidor">Mina Sidor</StyledNavLink>
         <StyledNavLink to="medlemskap">Medlemskap</StyledNavLink>

@@ -30,7 +30,7 @@ const StyledTextContainer = styled.div`
 
 `
 
-const StyledSignupContainer = styled.div`
+const StyledLoginContainer = styled.div`
   text-align: center;
 `
 
@@ -38,7 +38,7 @@ const StyledLink = styled(Link)`
   text-decoration: underline;
 `
 
-export const LogInCard = () => {
+export const LogInCard = ({ handleLogin }) => {
   const { logInContent } = useContentStore()
   const { heading, text, signUp} = logInContent
 
@@ -48,10 +48,10 @@ export const LogInCard = () => {
         <CardTitle text={heading.logIn} />
         <BodyText text={text.logIn} />
       </StyledTextContainer>
-      <LogInForm />
-      <StyledSignupContainer>
+      <LogInForm handleLogin={handleLogin} />
+      <StyledLoginContainer>
         <BodyText text={signUp.text}><StyledLink to={signUp.linkTo}>{signUp.linkText}</StyledLink></BodyText>
-      </StyledSignupContainer>
+      </StyledLoginContainer>
     </StyledLogInCard>
   )
 }

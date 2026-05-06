@@ -46,9 +46,26 @@ const logInContent = {
     linkTo: "/logga-in"
   },
   form: {
-    name: "namn",
+    firstName: "Förnamn",
+    firstNamePlaceholder: "ex. Anna",
+    lastName: "Efternamn",
+    lastNamePlaceholder: "ex. Andersson",
     email: "E-post",
+    emailPlaceholder: "ex. anna@example.com",
     password: "Lösenord",
+    passwordPlaceholder: "Ange ditt lösenord",
+    city: "I vilken stad bor du?",
+    cityPlaceholder: "Sök bland alla svenska städer...",
+    justifyMembershipLabel: "Berätta kort om dig själv och varför du vill vara en del av Womenation!",
+    workStatusLabel: "Vart befinner du dig just nu?",
+    workStatusDesc: "Välj det alternativ som passar din arbetssituation bäst, du kan välja fler alternativ.",
+    workStatus: {
+      a: "Jobbar i ett företag eller organisation",
+      b: "Driver eget företag",
+      c: "Håller på att starta eget",
+      d: "Söker nytt jobb eller vill byta bana",
+      e: "Annat"
+    },
     button: {
       logIn: "Logga in",
       signUp: "Bli medlem"

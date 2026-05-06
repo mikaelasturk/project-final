@@ -5,6 +5,7 @@ const StyledButton = styled.button`
   border: none;
   display: flex;
   padding: 8px 30px;
+  cursor: pointer;
 
 
   ${({ $variant, theme }) => $variant === "card" && `
