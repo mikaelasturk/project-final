@@ -1,0 +1,49 @@
+
+export const Fieldset = () => {
+
+  return (
+   <fieldset>
+        <legend>{form.workStatusLabel}</legend>
+        <p>{form.workStatusDesc}</p>
+        <input 
+        type="checkbox" 
+        id="worker" 
+        name="workStatus" 
+        value="worker" 
+        />
+        <label for="worker" text={form.workStatus.a} />
+        
+        <input 
+        type="checkbox" 
+        id="owner" 
+        name="workStatus" 
+        value="owner" 
+        />
+        <label for="owner" text={form.workStatus.b} />
+        
+        <input 
+        type="checkbox" 
+        id="startUp" 
+        name="workStatus" 
+        value="startUp"
+        />
+        <label for="startUp" text={form.workStatus.c} />
+        
+        <input 
+        type="checkbox" 
+        id="searching" 
+        name="workStatus" 
+        value="searching"
+        />
+        <label for="searching" text={form.workStatus.d} />
+        
+        <input 
+        type="checkbox" 
+        id="workStatus" 
+        name="workStatus" 
+        value="other"
+        /> 
+        <label for="other" text={form.workStatus.e} />
+      </fieldset>
+  );
+};
