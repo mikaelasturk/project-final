@@ -1,6 +1,7 @@
 // [x] Make components for inputfields?
 // [ ] Connect form to backend
 // [x] Connect form to content store
+// [ ] make the input field be used with enter to submit
 
 import styled from 'styled-components'
 import { useContentStore } from '../../../store/contentStore'
@@ -101,6 +102,7 @@ export const LogInForm = ({ handleLogin }) => {
       {loginData.error && <p>{loginData.error}</p>}
       <Button 
         type="submit" 
+        // [ ] todo: lägga in Loggar in ... i content store
         text={loginData.isSubmitting ? "Loggar in..." : form.button.logIn}
         variant="loggaIn-login" disabled={loginData.isSubmitting}
       />
