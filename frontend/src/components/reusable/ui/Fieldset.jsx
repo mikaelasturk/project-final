@@ -47,10 +47,40 @@ const StyledCheckbox = styled.div`
 
 
 export const Fieldset = () => {
-  const { signUpData, setWorkStatus, setOtherText } = useFormStore()
+  const { signUpData, setWorkStatus, setOtherText, clearSignUpFieldError, setSignUpFieldErrors } = useFormStore()
   const { logInContent } = useContentStore()
   const { form } = logInContent;
-  
+
+  const handleWorkStatusChange = (event) => {
+    const { value, checked } = event.target
+
+    setWorkStatus(value, checked)
+
+     if (checked) {
+      clearSignUpFieldError('workStatus')
+    }
+
+    if (value === 'other' && !checked) {
+      const hasOtherSelectedStatus = [
+        signUpData.workStatus.worker,
+        signUpData.workStatus.owner,
+        signUpData.workStatus.startUp,
+        signUpData.workStatus.searching
+      ].some(Boolean)
+      const nextFieldErrors = { ...signUpData.fieldErrors }
+
+      delete nextFieldErrors.otherText
+
+      setOtherText('')
+      clearSignUpFieldError('otherText')
+
+      if (!hasOtherSelectedStatus) {
+        nextFieldErrors.workStatus = 'Välj minst ett alternativ.'
+      }
+
+      setSignUpFieldErrors(nextFieldErrors)
+    }
+  }
 
 
   return (
@@ -65,7 +95,7 @@ export const Fieldset = () => {
           name="workStatus"
           value="worker"
           checked={signUpData.workStatus.worker}
-          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
+          onChange={handleWorkStatusChange}
         />
         <label htmlFor="worker">{form.workStatus.a}</label>
       </StyledCheckbox>
@@ -77,7 +107,7 @@ export const Fieldset = () => {
           name="workStatus"
           value="owner"
           checked={signUpData.workStatus.owner}
-          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
+          onChange={handleWorkStatusChange}
         />
         <label htmlFor="owner">{form.workStatus.b}</label>
       </StyledCheckbox>
@@ -89,7 +119,7 @@ export const Fieldset = () => {
           name="workStatus"
           value="startUp"
           checked={signUpData.workStatus.startUp}
-          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
+          onChange={handleWorkStatusChange}
         />
         <label htmlFor="startUp">{form.workStatus.c}</label>
       </StyledCheckbox>
@@ -101,7 +131,7 @@ export const Fieldset = () => {
           name="workStatus"
           value="searching"
           checked={signUpData.workStatus.searching}
-          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
+          onChange={handleWorkStatusChange}
         />
         <label htmlFor="searching">{form.workStatus.d}</label>
       </StyledCheckbox>
@@ -113,7 +143,7 @@ export const Fieldset = () => {
           name="workStatus"
           value="other"
           checked={signUpData.workStatus.other}
-          onChange={(event) => setWorkStatus(event.target.value, event.target.checked)}
+          onChange={handleWorkStatusChange}
         /> 
         <label htmlFor="other">{form.workStatus.e}</label>
       </StyledCheckbox>

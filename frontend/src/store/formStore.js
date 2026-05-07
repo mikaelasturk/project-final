@@ -15,14 +15,17 @@ const getInitialSignUpData = () => ({
     other: false,
     otherText: ''
   },
-  error: '',
+  fieldErrors: {},
+  submitError: '',
+  isSuccess: false,
   isSubmitting: false
 })
 
 const getInitialLoginData = () => ({
   email: '',
   password: '',
-  error: '',
+  fieldErrors: {},
+  submitError: '',
   isSubmitting: false
 })
 
@@ -34,6 +37,30 @@ export const useFormStore = create((set) => ({
   setSignUpField: (field, value) => 
     set((state) => ({
       signUpData: { ...state.signUpData, [field]: value}
+    })),
+
+  setSignUpFieldErrors: (fieldErrors) =>
+    set((state) => ({
+      signUpData: { ...state.signUpData, fieldErrors }
+    })),
+
+  clearSignUpFieldError: (field) =>
+    set((state) => {
+      if (!state.signUpData.fieldErrors[field]) {
+        return state
+      }
+
+      const nextErrors = { ...state.signUpData.fieldErrors }
+      delete nextErrors[field]
+
+      return {
+        signUpData: { ...state.signUpData, fieldErrors: nextErrors }
+      }
+    }),
+
+  setSignUpSubmitError: (submitError, isSuccess = false) =>
+    set((state) => ({
+      signUpData: { ...state.signUpData, submitError, isSuccess }
     })),
 
   setWorkStatus: (value, checked) => 
@@ -52,11 +79,6 @@ export const useFormStore = create((set) => ({
       }
     })),
 
-  setSignUpError: (error) =>
-    set((state) => ({
-      signUpData: {...state.signUpData, error}
-    })),
-
   setSignUpSubmitting: (isSubmitting) =>
     set((state) => ({
       signUpData: {...state.signUpData, isSubmitting}
@@ -71,11 +93,24 @@ export const useFormStore = create((set) => ({
     set((state) => ({
       loginData: {...state.loginData, [field]: value}
     })),
-  
-  setLoginError: (error) =>
+
+  setLoginSubmitError: (submitError) =>
     set((state) => ({
-      loginData: {...state.loginData, error}
+      loginData: {...state.loginData, submitError}
     })),
+
+  setLoginFieldErrors: (fieldErrors) =>
+    set((state) => ({
+      loginData: {...state.loginData, fieldErrors}
+    })),
+
+  clearLoginFieldError: (field) =>
+    set((state) => {
+      if (!state.loginData.fieldErrors[field]) return state
+      const nextErrors = { ...state.loginData.fieldErrors }
+      delete nextErrors[field]
+      return { loginData: { ...state.loginData, fieldErrors: nextErrors } }
+    }),
 
   setLoginSubmitting: (isSubmitting) =>
     set((state) => ({

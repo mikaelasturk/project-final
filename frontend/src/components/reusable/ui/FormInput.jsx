@@ -57,15 +57,22 @@ const StyledTextarea = styled.textarea`
 
 `
 
-export const FormInput = ({ type, id, name, label, value, onChange, variant, placeholder }) => {
+const StyledError = styled.p`
+  margin: 6px 0 0;
+  color: #b52a37;
+  font-size: 0.85rem;
+`
+
+export const FormInput = ({ type, id, name, label, value, onChange, variant, placeholder, error, ...rest }) => {
 
   return (
     <StyledInputContainer>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       {type === 'textarea'
-        ? <StyledTextarea id={id} name={name} value={value} onChange={onChange} placeholder={placeholder}/>
-        : <StyledInput $variant={variant} type={type} id={id} name={name} value={value} onChange={onChange} placeholder={placeholder}/>
+        ? <StyledTextarea id={id} name={name} value={value} onChange={onChange} placeholder={placeholder} {...rest} />
+        : <StyledInput $variant={variant} type={type} id={id} name={name} value={value} onChange={onChange} placeholder={placeholder} {...rest} />
       }
+      {error && <StyledError>{error}</StyledError>}
     </StyledInputContainer>
   )
 }

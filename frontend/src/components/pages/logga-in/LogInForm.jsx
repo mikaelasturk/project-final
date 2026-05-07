@@ -21,10 +21,35 @@ const StyledContentContainer = styled.div`
 
 `
 
+const StyledError = styled.p`
+  margin: 6px 0 0;
+  color: #b52a37;
+  font-size: 0.85rem;
+`
+
+const toLoginFieldErrors = (fieldErrors = {}) => {
+  const errorMessages = {
+    REQUIRED: 'Detta falt ar obligatoriskt'
+  }
+
+  return Object.fromEntries(
+    Object.entries(fieldErrors).map(([field, code]) => [field, errorMessages[code] || code])
+  )
+}
+
 export const LogInForm = ({ handleLogin }) => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
-  const { loginData, setLoginField, setLoginError, setLoginSubmitting, resetLogin } = useFormStore()
+  const {
+    loginData,
+    setLoginField,
+    setLoginSubmitError,
+    setLoginFieldErrors,
+    clearLoginFieldError,
+    setLoginSubmitting,
+    resetLogin
+  } = useFormStore()
+
 
   //göra en handleSubmit
 
@@ -32,13 +57,18 @@ export const LogInForm = ({ handleLogin }) => {
     event.preventDefault()
     console.log("Submit klickad", loginData)
 
-    if (!loginData.email || !loginData.password) {
-      setLoginError("Please fill in all fields")
-      // setError kopplat till backend error response?
+    setLoginSubmitError('')
+    setLoginFieldErrors({})
+
+    const localFieldErrors = {}
+    if (!loginData.email.trim()) localFieldErrors.email = 'Detta falt ar obligatoriskt'
+    if (!loginData.password.trim()) localFieldErrors.password = 'Detta falt ar obligatoriskt'
+
+    if (Object.keys(localFieldErrors).length > 0) {
+      setLoginFieldErrors(localFieldErrors)
       return
     }
 
-    setLoginError('')
     setLoginSubmitting(true)
 
       //fetch API med method POST
@@ -59,8 +89,12 @@ export const LogInForm = ({ handleLogin }) => {
        console.log("Login response data:", data)
 
       if (!response.ok) {
-        //lägga in error response från backend
-        throw new Error(data?.message || "Login failed")
+        if (data?.fieldErrors) {
+          setLoginFieldErrors(toLoginFieldErrors(data.fieldErrors))
+        } else {
+          setLoginSubmitError(data?.message || "Invalid email or password")
+        }
+        return
       }
       console.log("Login lyckades, anropar handleLogin")
 
@@ -70,8 +104,8 @@ export const LogInForm = ({ handleLogin }) => {
         resetLogin()
       }
     } catch (error) {
-      // Error response från backend (?)
-      setLoginError(error.message || "Invalid email or password")
+      const isNetworkError = error instanceof TypeError
+      setLoginSubmitError(isNetworkError ? 'Kunde inte ansluta till servern. Forsok igen om en liten stund.' : 'Invalid email or password')
     } finally {
       setLoginSubmitting(false)
     }
@@ -81,25 +115,35 @@ export const LogInForm = ({ handleLogin }) => {
     <StyledForm onSubmit={handleSubmit}>
       <StyledContentContainer>
         <FormInput 
-          onChange={(event) => setLoginField('email', event.target.value)} 
+          variant="login"
+          onChange={(event) => {
+            setLoginField('email', event.target.value)
+            clearLoginFieldError('email')
+          }} 
           type="email" 
           id="email" 
           name="email"
           placeholder={form.emailPlaceholder}
           value={loginData.email}
-          label={form.email} 
+          label={form.email}
+          error={loginData.fieldErrors.email}
         />
         <FormInput 
-          onChange={(event) => setLoginField('password', event.target.value)} 
+          variant="login"
+          onChange={(event) => {
+            setLoginField('password', event.target.value)
+            clearLoginFieldError('password')
+          }} 
           type="password" 
           id="password" 
           name="password"
           placeholder={form.passwordPlaceholder}
           value={loginData.password}
-          label={form.password} 
+          label={form.password}
+          error={loginData.fieldErrors.password}
         />
       </StyledContentContainer>
-      {loginData.error && <p>{loginData.error}</p>}
+      {loginData.submitError && <StyledError>{loginData.submitError}</StyledError>}
       <Button 
         type="submit" 
         // [ ] todo: lägga in Loggar in ... i content store

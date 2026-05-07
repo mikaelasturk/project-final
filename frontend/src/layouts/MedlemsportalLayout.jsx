@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { useState, useEffect } from "react"
 import { API_URL } from "../../Constants"
 
+// [ ] eslint säger att det saknas en dependency i useEffect
+
 const PageWrapper = styled.div`
   display: flex;
   min-height: 100vh;

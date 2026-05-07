@@ -1,0 +1,87 @@
+Fråga:
+Vad är skillnad på backend validation och frontend validation? Behövs båda?
+
+Svar:
+Kort svar: ja, i praktiken vill du ha båda, men av olika skäl.
+
+Frontend validation:
+
+1 För användarupplevelse.
+2 Snabb feedback direkt i formuläret.
+3 Minskar onödiga requests till servern.
+4 Exempel: tomma fält, ogiltigt e-postformat, för kort lösenord.
+
+
+Backend validation:
+
+1 För säkerhet och datakvalitet.
+2 Enda valideringen du kan lita på.
+3 Skyddar mot manipulerade requests (någon kan alltid kringgå frontend).
+4 Exempel: unik e-post, tillåtna värden, längdgränser, business rules.
+
+
+Varför frontend inte räcker:
+
+1 Frontend-kod körs hos användaren och kan ändras/bypassas.
+2 API kan anropas direkt utan ditt UI.
+3 Utan backend validation riskerar du felaktig eller skadlig data i databasen.
+
+
+Varför backend ensam ofta känns sämre:
+
+1 Seg feedback (först efter request).
+2 Mer frustrerande formulärflöde.
+3 Fler onödiga API-anrop.
+
+
+Rekommenderad modell:
+
+Samma grundregler i båda lager.
+Frontend: användarvänlig, snabb feedback.
+Backend: strikt, definitiv kontroll och tydliga felmeddelanden.
+Så: behöver båda? Ja, om appen ska vara både trygg och bra att använda.
+
+
+Fråga:
+Hur ser vi till att det är samma validering då?
+
+
+Svar:
+Det finns tre vanliga nivåer, från enklast till bäst:
+
+1 Backend som “source of truth”
+2 Frontend gör samma regler för UX, men backend avgör alltid
+3 Håll reglerna dokumenterade i en gemensam “validation contract”
+
+
+Mer robust sätt:
+
+1 Använd samma schema-bibliotek i båda lager, t.ex. Zod
+2 Definiera ett schema en gång
+3 Använd det i frontend för live-feedback
+4 Använd exakt samma schema i backend innan save
+
+
+Praktiskt upplägg:
+
+Skapa en gemensam schemafil (shared)
+Frontend: validera formulärdata mot schemat
+Backend: validera request body mot samma schema
+Backend returnerar strukturerade fältfel (inte bara en generell text)
+Frontend mappar backend-fel till rätt inputfält
+
+
+Om ni inte vill dela kod mellan frontend/backend just nu:
+
+1 Sätt backend-reglerna först
+2 Spegla dem i frontend
+3 Lägg till ett litet test som skickar samma testdata mot båda och jämför resultat
+4 Uppdatera båda när en regel ändras
+
+
+Tumregel:
+
+Backend = säkerhet och sanning
+Frontend = snabb UX
+Samma schema eller tydligt kontrakt = inga driftande regler
+Om du vill kan vi nästa steg skissa ett konkret “validation contract” för just signup-fälten i ert projekt, utan att implementera ännu.

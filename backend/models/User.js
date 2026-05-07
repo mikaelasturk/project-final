@@ -16,26 +16,52 @@ const formatStockholm = (date) => date ? new Intl.DateTimeFormat("sv-SE", {
   }).format(date)
 : undefined;
 
+const workStatusSchema = new mongoose.Schema({
+  worker: { type: Boolean, default: false },
+  owner: { type: Boolean, default: false },
+  startUp: { type: Boolean, default: false },
+  searching: { type: Boolean, default: false },
+  other: { type: Boolean, default: false },
+  otherText: {
+    type: String,
+    trim: true,
+    validate: {
+      validator(value) {
+        if (!this.other) return true
+        return Boolean(String(value || "").trim())
+      },
+      message: "otherText is required when other is true"
+    }
+  }
+}, { _id: false })
+
 const userSchema = new mongoose.Schema({
 
   firstName: {
     type: String,
     required: true,
-    minlength: 2
+    minlength: 2,
+    trim: true
   },
   lastName: {
     type: String,
     required: true,
-    minlength: 2
+    minlength: 2,
+    trim: true
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true,
+    lowercase: true,
+    match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format"]
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    minlength: 8,
+    match: [/^(?=.*[A-ZÅÄÖ])(?=.*[a-zåäö])(?=.*\d).{8,}$/, "Invalid password format"]
   },
   accessToken: {
     type: String,
@@ -43,11 +69,30 @@ const userSchema = new mongoose.Schema({
   },
   city: {
     type: String,
+    required: true
   },
+  justifyMembership: {
+    type: String,
+    required: true,
+    minlength: 10
+  },
+  workStatus: {
+    type: workStatusSchema,
+    required: true,
+    validate: {
+      validator(value) {
+        if (!value) return false
+
+        return [value.worker, value.owner, value.startUp, value.searching, value.other].some(Boolean)
+      },
+      message: "At least one work status option must be selected"
+    }
+  },  
   isPremium: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
+    index: true
   },
   premiumStartDate: { 
     type: Date, 
@@ -65,6 +110,7 @@ const userSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now 
   }
+
 },
 
 {

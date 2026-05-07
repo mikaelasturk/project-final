@@ -5,6 +5,17 @@ import swedishCities from "../../../data/swedishCities.json"
 import { useMemo } from 'react'
 import { useFormStore } from "../../../store/formStore"
 
+// [ ] TODO: Diskutera kommentar nedan:
+// NOTE (att göra tillsammans):
+// react-select returnerar ett objekt för city ({ value, label }),
+// men backend-kontraktet för signup förväntar sig en textsträng.
+// För att hålla API:t tydligt och konsekvent bör vi standardisera här:
+// 1) Spara city i formState som sträng (t.ex. option.label eller option.value),
+// 2) Skicka samma sträng i signup-payload,
+// 3) Om Select behöver ett objekt för visning, mappa från strängen tillbaka till option i komponenten.
+// Då slipper backend speciallogik för objektformat och validering blir enklare att förstå.
+
+// [ ] TODO: Lägg till en "Välj din stad"-option som inte går att välja (disabled) och som visas som standard när ingen stad är vald. Denna option bör inte vara valbar och fungera som en instruktion för användaren att välja sin stad. Placeholder funkar inte när isClearable=true, så behöver en default option istället. - Förslag från AI, diskutera.
 // [ ] TODO: styla Select-komponenten så att den matchar resten av formuläret, t.ex. genom att ändra bakgrundsfärg, kantfärg och textfärg. Använd gärna props för att göra det enkelt att anpassa stilen. Ljuslila bakgrund på option?
 
 const StyledLabel = styled.label`
@@ -68,7 +79,7 @@ const StyledSelect = styled(Select)`
   }
 `
 
-export const CitySelector = ({ label, id, name }) => {
+export const CitySelector = ({ label, id, name, onChange }) => {
   const { signUpData, setSignUpField } = useFormStore()
   const { logInContent } = useContentStore()
   const { form } = logInContent
@@ -84,7 +95,12 @@ export const CitySelector = ({ label, id, name }) => {
         name={name}
         options={cityOptions}
         value={signUpData.city}
-        onChange={(option) => setSignUpField('city', option)}
+        onChange={(option) => {
+          setSignUpField('city', option)
+          if (onChange) {
+            onChange(option)
+          }
+        }}
         placeholder={form.cityPlaceholder}
         isSearchable={true}
         isClearable={true}

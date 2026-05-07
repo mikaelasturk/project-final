@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import listEndpoints from "express-list-endpoints";
-import userRoutes from "./routes/userRoutes"
+import userRoutes from "./routes/userRoutesValidated"
 import { authenticateUser } from "./middleware/authMiddleware";
 import dashboardRoutes from "./routes/dashboardRoutes"
 

@@ -1,4 +1,5 @@
 // [x] todo: implement user routes for signup and login locally
+// [ ] TODO: implement validation for signup and login routes (email format, password strength, required fields etc) and return specific error messages for each field that fails validation (e.g. "Email is required", "Password must be at least 8 characters long" etc) - this will make it easier to display specific error messages in the frontend form and guide the user to correct their input see userRoutesValidated.js for example of how to implement validation in the backend routes. (AI)
 // [ ] todo: make route for admin to view members and filter on premium(query)
 
 import express from "express"
