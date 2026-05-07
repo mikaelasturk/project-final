@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+//Hur gör vi detta för att korta ner koden? 
+//const theme = theme.konto.mainPage.events
+
 const PageTitle = styled.h2`
   color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
   text-transform: uppercase;

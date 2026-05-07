@@ -95,7 +95,7 @@ export const Theme = {
       inputTxtClrSelected: 'var(--white)',
     },
     buttons: {
-      loggaIn: {
+      signUp: {
         bgClr: 'var(--gold)',
         txtClr: 'var(--black)',
       },
