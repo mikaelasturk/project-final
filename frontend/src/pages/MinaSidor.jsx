@@ -1,6 +1,6 @@
+import { useState } from "react"
 import styled from "styled-components"
 import { FormInput } from "../components/reusable/ui/FormInput"
-import { useFormStore } from "../store/formStore"
 
 const PageTitle = styled.h2`
   color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
@@ -91,18 +91,33 @@ const FieldLabel = styled.span`
 `
 
 export const MinaSidor = () => {
-  const editing = useFormStore((s) => s.minaSidorEditing)
-  const formData = useFormStore((s) => s.minaSidorDraft)
-  const savedData = useFormStore((s) => s.minaSidorSaved)
-  const startEditing = useFormStore((s) => s.startEditingMinaSidor)
-  const setField = useFormStore((s) => s.setMinaSidorField)
-  const save = useFormStore((s) => s.saveMinaSidor)
+  const [editing, setEditing] = useState(false)
+  const [formData, setFormData] = useState({
+    namn: "",
+    email: "",
+    bank: "",
+    xxx: "",
+  })
+  const [savedData, setSavedData] = useState({
+    namn: "Test Testersson",
+    email: "test.testersson@example.com",
+    bank: "Bank of Test",
+    xxx: "",
+  })
 
-  const handleChange = (e) => setField(e.target.name, e.target.value)
-  const handleEdit = () => startEditing()
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleEdit = () => {
+    setFormData(savedData)
+    setEditing(true)
+  }
+
   const handleSave = (e) => {
     e.preventDefault()
-    save()
+    setSavedData(formData)
+    setEditing(false)
   }
 
   return (

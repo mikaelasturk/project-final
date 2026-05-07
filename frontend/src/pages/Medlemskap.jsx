@@ -14,6 +14,7 @@ const PageTitle = styled.h2`
 const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  ölsfsö<dfn></dfn>
   align-items: center;
   gap: 24px;
   position: relative;
