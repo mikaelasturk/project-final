@@ -20,9 +20,13 @@ export const SignUpForm = () => {
   const { form } = logInContent
   const { signUpData, setSignUpField, setSignUpSubmitting, resetSignUp } = useFormStore()
 
+  //[ ] todo: fixa setSignUpSubmitting för att knappen ska byta texten vid submitting läge, integrera med API fetch
+  //[ ] todo: fixa resetSignUp för att funka med setSignUpSubmitting, integrera med API fetch
+
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log(signUpData)
+
     setSignUpSubmitting(true)
     resetSignUp()
   }
