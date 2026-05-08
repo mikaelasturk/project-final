@@ -36,7 +36,7 @@ const StyledLink = styled(Link)`
   text-decoration: underline;
 `
 
-export const SignUpCard = () => {
+export const SignUpCard = ({ handleSignUp }) => {
   const { logInContent } = useContentStore()
   const { heading, text, logIn } = logInContent
 
@@ -46,7 +46,7 @@ export const SignUpCard = () => {
         <CardTitle text={heading.signUp} />
         <BodyText text={text.signUp} />
       </StyledTextContainer>
-      <SignUpForm />
+      <SignUpForm handleSignUp={handleSignUp} />
       <StyledSignupContainer>
         <BodyText text={logIn.text}><StyledLink to={logIn.linkTo}>{logIn.linkText}</StyledLink></BodyText>
       </StyledSignupContainer>

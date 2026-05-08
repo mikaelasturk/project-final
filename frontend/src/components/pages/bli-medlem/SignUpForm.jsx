@@ -16,7 +16,7 @@ const StyledForm = styled.form`
 
 //lägga till input firstname, lastname, city- auto search
 
-export const SignUpForm = () => {
+export const SignUpForm = ({ handleSignUp }) => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
   const { signUpData, setSignUpField, setSignUpSubmitting, resetSignUp, setSignUpError } = useFormStore()
