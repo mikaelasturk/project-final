@@ -17,7 +17,8 @@ export const seedingUsers = async () => {
       lastName: "Oldertz",
       email: "carolina.oldertz@gmail.com",
       password: bcrypt.hashSync("carolina", salt),
-      city: "",
+      city: "Stockholm",
+      justifyMembership: "Hej på dig!!!!!!!!!!",
       isPremium: true,
       premiumStartDate: new Date(),
       premiumEndDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
@@ -33,6 +34,7 @@ export const seedingUsers = async () => {
       email: "mikaelasturk@gmail.com",
       password: bcrypt.hashSync("mikaela", salt),
       city: "Stockholm",
+      justifyMembership: "Hej på digSAN!",
       isPremium: false
     }).save()
   }

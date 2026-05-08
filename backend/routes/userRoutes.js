@@ -19,7 +19,7 @@ router.get("/", async (request, response) => {
 // Signup route
 router.post("/signup", async (request, response) => {
   try {
-    const { email, password, firstName, lastName, city, isPremium } = request.body
+    const { email, password, firstName, lastName, city, justifyMembership, isPremium } = request.body
     const existingUser = await User.findOne({ email: email.toLowerCase()})
 
     if (existingUser) {
@@ -39,6 +39,7 @@ router.post("/signup", async (request, response) => {
       firstName, 
       lastName, 
       city, 
+      justifyMembership,
       isPremium: isPremium || false 
     })
 

@@ -1,1 +1,1 @@
-export const API_URL="https://womenation-membership-backend-branch.onrender.com"
+export const API_URL="https://womenation-membership.onrender.com"

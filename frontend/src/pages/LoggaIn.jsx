@@ -1,4 +1,5 @@
 // [x] Connect to contentStore
+// [ ] Gör userStore och byt ut useState
 
 import styled from 'styled-components'
 // import { useContentStore } from '../store/contentStore'
@@ -25,10 +26,10 @@ export const LoggaIn = () => {
   const navigate = useNavigate()
 
 
-// ska handleLogin vara på loginCard istället för loginpage??
+// [ ] ska handleLogin vara på loginCard istället för loginpage??
   const handleLogin = (userData) => {
     setUser(userData)
-    // Normally one would also set an expiration date for the token
+    // [ ] Normally one would also set an expiration date for the token
     // and store it in a secure cookie or in a more secure storage.
     // But for now we just store it in localStorage for simplicity.
     localStorage.setItem("user", JSON.stringify(userData))
