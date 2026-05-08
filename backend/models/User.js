@@ -43,6 +43,12 @@ const userSchema = new mongoose.Schema({
   },
   city: {
     type: String,
+    reqired: true
+  },
+  justifyMembership: {
+    type: String,
+    required: true,
+    minlength: 10
   },
   isPremium: {
     type: Boolean,
