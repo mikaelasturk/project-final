@@ -26,7 +26,7 @@ router.post("/signup", async (request, response) => {
     if (existingUser) {
       return response.status(409).json({
         success: false,
-        message: "An error occurred when creating the user"
+        message: "Email address already exists"
       })
     }
 

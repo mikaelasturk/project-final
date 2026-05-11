@@ -1,0 +1,25 @@
+Det grundläggande flödet med Stripe ser ut så här:
+
+Frontend skapar en checkout-session via backend
+Stripe hanterar betalningen och skickar en webhook till backend när betalningen är klar
+Backend lyssnar på webhook-eventet checkout.session.completed och sätter isPremium: true på rätt användare i DB
+Det kräver:
+
+stripe npm-paketet i backend
+En ny route för att skapa checkout-sessioner
+En webhook-route som tar emot Stripe-events
+En Stripe-produkt/pris skapad i Stripe-dashboarden
+
+Vi har redan ProtectedRoute som kollar accessToken. För premium-innehåll behövs en liknande komponent som också kollar isPremium.
+
+Flödet blir:
+
+Backend sparar isPremium: true på användaren (via Stripe-webhook)
+Backend returnerar isPremium i user-objektet vid login/signup
+Frontend sparar isPremium i localStorage
+En ny PremiumRoute-komponent kollar att användaren både är inloggad OCH har isPremium: true
+Premium-sidor wrappas i PremiumRoute istället för ProtectedRoute
+Ska jag implementera PremiumRoute och koppla ihop det med App.jsx nu? Ni kan använda den för t.ex. /konto/premium när ni är redo att bygga det innehållet.
+
+
+
