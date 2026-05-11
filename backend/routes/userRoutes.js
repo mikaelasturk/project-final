@@ -27,6 +27,7 @@ router.post("/signup", async (request, response) => {
       return response.status(409).json({
         success: false,
         message: "Email address already exists"
+        // [ ] Är detta en GDPR fråga? Får vi säga att emailadressen redan finns?
       })
     }
 
@@ -39,7 +40,8 @@ router.post("/signup", async (request, response) => {
       firstName, 
       lastName, 
       city: cityValue, 
-      // [ ]lägg till workStatus
+      // [ ] lägg till cityLabel här också? Isf blir det cityLabel och cityValue i User schema istället
+      // [ ] lägg till workStatus
       justifyMembership,
       isPremium: isPremium || false 
     })

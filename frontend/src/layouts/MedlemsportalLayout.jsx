@@ -1,6 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom"
 import styled from "styled-components"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+import { useUserStore } from "../store/userStore"
 import { API_URL } from "../../Constants"
 
 const PageWrapper = styled.div`
@@ -83,28 +84,35 @@ const StyledMain = styled.main`
 `
 
 export const MedlemsportalLayout = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
-  const [firstName, setFirstName] = useState("")
-  
+  //const user = JSON.parse(localStorage.getItem("user"))
+  const { setUserData, user: user } = useUserStore()
 
+  console.log(user)
+  
+ // [ ] byt till async/await och try/catch samt lägg till error i catch :) 
   useEffect(() => {
-    fetch(`${API_URL}/dashboard/${user._id}`, {
-      headers: { "Authorization": `Bearer ${user.accessToken}` }
-    })
-      .then(response => response.json())
-      .then(data => {
+    const fetchData = async () => {
+      if (!user?.id) return
+      try {
+        const response = await fetch(`${API_URL}/dashboard/${user.id}`, {
+          headers: { "Authorization": `Bearer ${user.accessToken}` }
+        })
+        const data = await response.json()
         console.log("Dashboard response:", data)
-        if (data.user?.firstName) setFirstName(data.user.firstName)
-      })
-      .catch(() => {})
-  }, [])
+        if (data.user) setUserData(data.user)
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error)
+      }
+    }
+    fetchData()
+  }, [user?.id])
 
   return (
     <PageWrapper>
       <Sidebar>
         <AvatarRow>
           <Avatar />
-          <MemberName>{firstName}</MemberName>
+          <MemberName>{user?.firstName}</MemberName>
         </AvatarRow>
         <StyledNavLink to="mina-sidor">Mina Sidor</StyledNavLink>
         <StyledNavLink to="medlemskap">Medlemskap</StyledNavLink>
