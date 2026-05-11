@@ -4,6 +4,7 @@
 import express from "express"
 import bcrypt from "bcrypt"
 import { User } from "../models/User"
+import { addContactToMailchimp } from "../config/mailchimpConfig";
 import { seedingUsers } from "../seedingDatabase/seedingUsers";
 
 const router = express.Router()
@@ -34,8 +35,7 @@ router.post("/signup", async (request, response) => {
 
     const user = new User({
       email, 
-      password: 
-      hashedPassword, 
+      password: hashedPassword, 
       firstName, 
       lastName, 
       city, 
@@ -45,9 +45,15 @@ router.post("/signup", async (request, response) => {
 
     const savedUser = await user.save()
 
+    try {
+      await addContactToMailchimp(mailchimpUser) 
+    } catch (error) {
+      console.error("Kunde inte lägga till användare i Mailchimp:", error)
+    }
+
     response.status(201).json({
       success: true,
-      message: "User created successfully",
+      message: "User created successfully and added to Mailchimp",
       response: { 
        savedUser: savedUser
       }
