@@ -9,13 +9,13 @@ mailchimp.setConfig({
   server: process.env.MAILCHIMP_SERVER_PREFIX
 })
 
-const toMailchimpMember = (user) => ({
+const toMailchimpMember = (user, cityLabel) => ({
   email_address: user.email,
   status: "subscribed", //vi har single opt-in, så vi kan ha "subscribed"  och inte "pending"
   merge_fields: {
     FNAME: user.firstName,
     LNAME: user.lastName,
-    CITY: user.city,
+    CITY: cityLabel,
     MOTIVE: user.justifyMembership,
     // [ ] WORKSTATUS: user.workStatus,
     ISPREMIUM: user.isPremium ? "Premium" : "Gratis",
@@ -25,7 +25,7 @@ const toMailchimpMember = (user) => ({
   }
 })
 
-export const addContactToMailchimp = async (user) => {
+export const addContactToMailchimp = async (user, cityLabel) => {
     
   // Stoppa tidigt om input saknas.
   if (!user?.email) {
@@ -40,7 +40,7 @@ export const addContactToMailchimp = async (user) => {
   try {
     const response = await mailchimp.lists.addListMember(
       process.env.MAILCHIMP_LIST_ID,
-      toMailchimpMember(user)
+      toMailchimpMember(user, cityLabel)
     )
 
     return response

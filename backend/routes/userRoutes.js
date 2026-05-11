@@ -20,7 +20,7 @@ router.get("/", async (request, response) => {
 // Signup route
 router.post("/signup", async (request, response) => {
   try {
-    const { email, password, firstName, lastName, city, justifyMembership, isPremium } = request.body
+    const { email, password, firstName, lastName, cityValue, cityLabel, justifyMembership, isPremium } = request.body
     const existingUser = await User.findOne({ email: email.toLowerCase()})
 
     if (existingUser) {
@@ -38,7 +38,7 @@ router.post("/signup", async (request, response) => {
       password: hashedPassword,
       firstName, 
       lastName, 
-      city, 
+      city: cityValue, 
       // [ ]lägg till workStatus
       justifyMembership,
       isPremium: isPremium || false 
@@ -47,7 +47,7 @@ router.post("/signup", async (request, response) => {
     const savedUser = await user.save()
 
     try {
-      await addContactToMailchimp(savedUser) 
+      await addContactToMailchimp(savedUser, cityLabel) 
     } catch (error) {
       const mailchimpError = error.response?.body || error.message
 

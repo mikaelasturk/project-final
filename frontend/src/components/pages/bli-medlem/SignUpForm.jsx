@@ -30,7 +30,7 @@ export const SignUpForm = ({ handleSignUp }) => {
     event.preventDefault()
     console.log("Submit klickad", signUpData)
 
-    const { error, isSubmitting, city, workStatus, ...payload } = signUpData
+    const { city, workStatus, ...payload } = signUpData
 
     const selectedWorkStatusOptions = Object.entries(workStatus)
       .filter(([key, value]) => value === true && key !== 'otherText')
@@ -38,7 +38,8 @@ export const SignUpForm = ({ handleSignUp }) => {
 
     const requestBody = { 
       ...payload,
-      city: city.value,
+      cityValue: city.value,
+      cityLabel: city.label,
       workStatus: selectedWorkStatusOptions,
       otherText: workStatus.other ? workStatus.otherText : ''
     }
