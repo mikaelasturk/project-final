@@ -85,9 +85,10 @@ const StyledMain = styled.main`
 export const MedlemsportalLayout = () => {
   const user = JSON.parse(localStorage.getItem("user"))
   const [firstName, setFirstName] = useState("")
+  
 
   useEffect(() => {
-    fetch(`${API_URL}/dashboard/${user.id}`, {
+    fetch(`${API_URL}/dashboard/${user._id}`, {
       headers: { "Authorization": `Bearer ${user.accessToken}` }
     })
       .then(response => response.json())

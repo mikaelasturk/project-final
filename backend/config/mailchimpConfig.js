@@ -1,48 +1,46 @@
 import mailchimp from "@mailchimp/mailchimp_marketing"
 
-//[ ] set up env
+// [ ] set up env
 // [ ] hämta server prefix
+// [ ] skapa validering/error i ui för om emailadressen redan finns i mailchimp (Mailchimp returnerar 400 med "Member Exists" i body)
+
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
   server: process.env.MAILCHIMP_SERVER_PREFIX
 })
 
-// [ ] lägg in workStatus när färdigt
+const toMailchimpMember = (user) => ({
+  email_address: user.email,
+  status: "subscribed", //vi har single opt-in, så vi kan ha "subscribed"  och inte "pending"
+  merge_fields: {
+    FNAME: user.firstName,
+    LNAME: user.lastName,
+    CITY: user.city,
+    MOTIVE: user.justifyMembership,
+    // [ ] WORKSTATUS: user.workStatus,
+    ISPREMIUM: user.isPremium,
+    PREM_START: user.premiumStartDate,
+    PREM_END: user.premiumEndDate,
+    CREATEDAT: user.userCreatedAt
+  }
+})
 
+export const addContactToMailchimp = async (user) => {
+    
+  // Stoppa tidigt om input saknas.
+  if (!user?.email) {
+    throw new Error("Missing user email for Mailchimp")
+  }
 
-export const addContactToMailchimp = async () => {
-
-  const mailchimpUser = {
-    firstName,
-    lastName,
-    email,
-    city,
-    justifyMembership,
-    // workStatus,
-    isPremium,
-    premiumStartDate,
-    premiumEndDate,
-    createdAt
+  // Säkerställ att Mailchimp-konfig finns innan API-anrop.
+  if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_SERVER_PREFIX || !process.env.MAILCHIMP_LIST_ID) {
+    throw new Error("Missing Mailchimp environment variables")
   }
 
   try {
     const response = await mailchimp.lists.addListMember(
       process.env.MAILCHIMP_LIST_ID,
-      {
-        email_adress: mailchimpUser.email,
-        status: "subscribed",
-        merge_fields: {
-          FNAME: mailchimpUser.firstName,
-          LNAME: mailchimpUser.lastName,
-          CITY: mailchimpUser.city,
-          MOTIVE: mailchimpUser.justifyMembership,
-          // WORKSTATUS: mailchimpUser.workStatus,
-          ISPREMIUM: mailchimpUser.isPremium,
-          PREM_START: mailchimpUser.premiumStartDate,
-          PREM_END: mailchimpUser.premiumEndDate,
-          CREATEDAT: mailchimpUser.createdAt
-        }
-      }
+      toMailchimpMember(user)
     )
 
     return response
