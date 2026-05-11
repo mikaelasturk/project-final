@@ -18,7 +18,7 @@ const toMailchimpMember = (user) => ({
     CITY: user.city,
     MOTIVE: user.justifyMembership,
     // [ ] WORKSTATUS: user.workStatus,
-    ISPREMIUM: user.isPremium,
+    ISPREMIUM: user.isPremium ? "Premium" : "Gratis",
     PREM_START: user.premiumStartDate,
     PREM_END: user.premiumEndDate,
     CREATEDAT: user.userCreatedAt
