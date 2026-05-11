@@ -49,7 +49,15 @@ router.post("/signup", async (request, response) => {
     try {
       await addContactToMailchimp(savedUser) 
     } catch (error) {
-      console.error("Kunde inte lägga till användare i Mailchimp:", error)
+      const mailchimpError = error.response?.body || error.message
+
+      console.error("Kunde inte lägga till användare i Mailchimp:", mailchimpError)
+
+      return response.status(502).json({
+        success: false,
+        message: "User created, but Mailchimp sync failed",
+        response: mailchimpError
+      })
     }
 
     response.status(201).json({
