@@ -35,10 +35,11 @@ router.post("/signup", async (request, response) => {
 
     const user = new User({
       email, 
-      password: hashedPassword, 
+      password: hashedPassword,
       firstName, 
       lastName, 
       city, 
+      // [ ]lägg till workStatus
       justifyMembership,
       isPremium: isPremium || false 
     })
@@ -46,7 +47,7 @@ router.post("/signup", async (request, response) => {
     const savedUser = await user.save()
 
     try {
-      await addContactToMailchimp(mailchimpUser) 
+      await addContactToMailchimp(savedUser) 
     } catch (error) {
       console.error("Kunde inte lägga till användare i Mailchimp:", error)
     }
@@ -54,9 +55,7 @@ router.post("/signup", async (request, response) => {
     response.status(201).json({
       success: true,
       message: "User created successfully and added to Mailchimp",
-      response: { 
-       savedUser: savedUser
-      }
+      response: savedUser
     })
 
   } catch (error) {
