@@ -5,6 +5,7 @@ import mailchimp from "@mailchimp/mailchimp_marketing"
 // [ ] skapa validering/error i ui för om emailadressen redan finns i mailchimp (Mailchimp returnerar 400 med "Member Exists" i body)
 // [ ] Kolla om premiumStartDate och premiumEndDate funkar och skickas med i Mailchimp
 // [ ] Skapa logik som taggar ny användare med "Vill bli medlem" i Mailchimp vid POST
+// [ ] Ta bort required på alla fält i Mailchimp, backend sköter validering så det inte blir krock
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,

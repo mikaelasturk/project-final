@@ -4,8 +4,10 @@ import { Button } from "../ui/Button"
 import { useContentStore } from "../../../store/contentStore"
 import { useState } from "react"
 
+// [ ] Ta bort local storage och flytta handleLogout till userStore
+
 const StyledNavbar = styled.nav`
-  background: ${({theme}) => theme.colors.black};
+  background: ${({theme}) => theme.navbar.bgClr};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -35,7 +37,7 @@ const StyledUl = styled.ul`
 `
 
 const StyledItems = styled.li`
-  color: ${({theme})=> theme.colors.white}
+  color: ${({theme})=> theme.navbar.txtClr}
 `
 
 const StyledButtonWrapper = styled.div`
@@ -64,9 +66,6 @@ export const Navbar = () => {
         <StyledLogo src="/media/logo/Color logo - no background.png"/>
       </NavLink>
       <StyledUl>
-        <StyledItems>hem</StyledItems>
-        <StyledItems>om oss</StyledItems>
-        <StyledItems>kontakt</StyledItems>
         <StyledItems><NavLink to="/om-medlemskap">om medlemskap</NavLink></StyledItems>
         <StyledItems><NavLink to="/konto">konto</NavLink></StyledItems>
       </StyledUl>
@@ -97,7 +96,7 @@ export const Navbar = () => {
 }
 
 const StyledButton = styled.button`
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.navbar.txtClr};
   background-color: transparent;
   padding: 12px;
   border: none;
@@ -115,7 +114,7 @@ const StyledNavContent = styled.div`
   padding: 0 24px 42px 24px;
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.navbar.bgClr};
   align-items: center;
   width: 100vw;
   height: 50vh;
@@ -130,7 +129,7 @@ const StyledSpan = styled.span`
   display: block;
   height: 4px;
   width: 40px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.navbar.spanClr};
   margin: 8px 0;
   border-radius: 2px;
   transition: transform 0.4s ease, opacity 0.3s ease;
@@ -163,5 +162,5 @@ const StyledHamList = styled.ul`
 const StyledHamItem = styled(NavLink)`
   text-decoration: none;
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.navbar.txtClr};
 `

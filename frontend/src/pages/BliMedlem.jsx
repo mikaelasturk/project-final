@@ -31,7 +31,7 @@ export const BliMedlem = () => {
     // [ ] Normally one would also set an expiration date for the token
     // and store it in a secure cookie or in a more secure storage.
     // But for now we just store it in localStorage for simplicity.
-    localStorage.setItem('user', JSON.stringify(userData))
+    //localStorage.setItem('user', JSON.stringify(userData))
     navigate('/konto')
   }
   return (

@@ -1,7 +1,6 @@
 // [x] TODO make button for going back to the membership page. 
 
 import styled from 'styled-components'
-import { Button } from '../../reusable/ui/Button'
 import { BodyText, CardTitle } from '../../reusable/typography/typography'
 import { useContentStore } from '../../../store/contentStore'
 import { LogInForm } from "./LogInForm"

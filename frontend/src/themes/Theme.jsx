@@ -1,4 +1,6 @@
 // [x] Mikaela ska kolla upp hur vi ska strukturera theme colors efter pages.
+// [x] gå igenom vad som använder colors och ändra till strukturen nedan
+
 
 export const Theme = {
 
@@ -9,19 +11,6 @@ export const Theme = {
     desktop: '1024px',
   },
 
-  // [ ] gå igenom vad som använder colors och ändra till strukturen nedan
-
-  colors: {
-    // darkPurple: '#442E57',     //grafisk profil
-    // mediumPurple: '#574368', //hemsidan
-    // lightPurple: '#CFCCE4', //grafisk profil
-    // gold: '#CDB56C', //grafisk profil
-    // darkGrey: '#353333', //hemsidan
-    // lightGrey: '#C6C6C7', //påhittad
-    black: '#000000',         
-    white: '#ffffff'
-  },
-
   // --darkPurple: '#442E57', //from graphic design
   // --mediumPurple: '#574368', //from website
   // --lightPurple: '#CFCCE4', //from graphic design
@@ -30,6 +19,12 @@ export const Theme = {
   // --lightGrey: '#C6C6C7', //made up
   // --black: '#000000',         
   // --white: '#ffffff'
+
+  navbar: {
+    bgClr: 'var(--black)',
+    txtClr: 'var(--white)',
+    spanClr: 'var(--white)',
+  },
 
   //Color theme for "omMedlemskap" page
   omMedlemskap: {
