@@ -28,6 +28,11 @@ const StyledBodyText = styled.div`
     }
   `}
 
+  ${({ $variant}) => $variant === "event" && `
+    color: ${({ theme }) => theme.konto.mainPage.events.cards.textClr.p};
+    font-size: 18px;
+  `}
+
 `
 
 export const BodyText = ({ text, children, variant, icon }) => {

@@ -15,7 +15,7 @@ const Sidebar = styled.aside`
   flex-direction: column;
   gap: 12px;
   padding: 28px 22px;
-  background: ${({ theme }) => theme.colors.darkGrey};
+  background: ${({ theme }) => theme.konto.bgClr};
   width: 25%;
 `
 

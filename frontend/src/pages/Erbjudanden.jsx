@@ -1,20 +1,13 @@
 import styled from 'styled-components'
-
-const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 40px;
-`
+import { PageTitle } from '../components/reusable/typography/PageTitle'
+import { useContentStore } from '../store/contentStore'
 
 export const Erbjudanden = () => {
+   const { erbjudandenContent } = useContentStore()
 
   return (
     <>
-      <PageTitle>Erbjudanden</PageTitle>
+      <PageTitle variant="konto" text={erbjudandenContent.heading}/>
     </>
    )
 }

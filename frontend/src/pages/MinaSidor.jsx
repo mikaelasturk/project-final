@@ -1,16 +1,9 @@
 import { useState } from "react"
 import styled from "styled-components"
 import { FormInput } from "../components/reusable/ui/FormInput"
+import { PageTitle } from "../components/reusable/typography/PageTitle"
+import { useContentStore } from "../store/contentStore"
 
-const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 48px;
-`
 
 const PageContent = styled.div`
   width: 100%;
@@ -91,6 +84,7 @@ const FieldLabel = styled.span`
 `
 
 export const MinaSidor = () => {
+  const { minaSidorContent } = useContentStore()
   const [editing, setEditing] = useState(false)
   const [formData, setFormData] = useState({
     namn: "",
@@ -122,7 +116,7 @@ export const MinaSidor = () => {
 
   return (
     <PageContent>
-      <PageTitle>Mina Sidor</PageTitle>
+      <PageTitle variant="konto" text={minaSidorContent.heading}/>
       <Card as="form" onSubmit={handleSave}>
         <Section>
           <SectionHeader>

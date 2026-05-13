@@ -7,7 +7,6 @@ const StyledButton = styled.button`
   padding: 8px 30px;
   cursor: pointer;
 
-
   ${({ $variant, theme }) => $variant === "card" && `
     width: max-content;
     margin-top: 50px;
@@ -30,6 +29,13 @@ const StyledButton = styled.button`
     display: inline;
     background: ${theme.loggaIn.buttons.gåTillbaka.bgClr};
     margin-left: 40px;
+  `}
+
+  ${({ $variant, theme }) => $variant === "event" && `
+    background: ${theme.konto.mainPage.events.cards.button.bgClr};
+    color: ${theme.konto.mainPage.events.cards.button.txtClr};
+    font-size: 15px;
+    padding: 8px 14px;
   `}
 `
 
