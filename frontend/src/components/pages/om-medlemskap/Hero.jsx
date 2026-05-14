@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { PageTitle } from '../../reusable/typography/PageTitle'
-import { useContentStore } from '../../../store/contentStore'
+import { PageTitle } from '../../typography'
+import { useContentStore } from '../../../store'
 
 const HeroWrapper = styled.section`
   width: 100%;
@@ -38,7 +38,8 @@ const Content = styled.div`
 `
 
 export const Hero = () => {
-  const { content } = useContentStore()
+  const { omMedlemskapContent } = useContentStore()
+  const { hero } = omMedlemskapContent
   const filename = '1 (286).jpg'
   const img = `/media/images/${encodeURIComponent(filename)}`
 
@@ -47,7 +48,7 @@ export const Hero = () => {
       <Background bg={img}>
         <Overlay />
         <Content>
-          <PageTitle text={content.hero} variant="hero"/>
+          <PageTitle text={hero} variant="hero"/>
         </Content>
       </Background>
     </HeroWrapper>

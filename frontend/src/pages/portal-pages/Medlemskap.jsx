@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { MembershipCard } from "../components/pages/om-medlemskap/MembershipCard"
+import { MembershipCard } from "../../components/pages/om-medlemskap/MembershipCard"
 
 const PageTitle = styled.h2`
   color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};

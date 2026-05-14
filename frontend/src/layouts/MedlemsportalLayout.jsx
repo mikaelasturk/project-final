@@ -1,8 +1,8 @@
 import { Outlet, NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { useEffect } from "react"
-import { useUserStore } from "../store/userStore"
-import { API_URL } from "../../Constants"
+import { useUserStore } from "../store"
+import { API_URL } from "../constants/Constants"
 
 const PageWrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Sidebar = styled.aside`
   flex-direction: column;
   gap: 12px;
   padding: 28px 22px;
-  background: ${({ theme }) => theme.colors.darkGrey};
+  background: ${({ theme }) => theme.konto.sidebar.bgClr};
   width: 25%;
 `
 
@@ -28,6 +28,7 @@ const AvatarRow = styled.div`
 `
 
 const Avatar = styled.div`
+
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -84,12 +85,10 @@ const StyledMain = styled.main`
 `
 
 export const MedlemsportalLayout = () => {
-  //const user = JSON.parse(localStorage.getItem("user"))
-  const { setUserData, user: user } = useUserStore()
+  const { setUserData, user } = useUserStore()
 
-  console.log(user)
-  
- // [ ] byt till async/await och try/catch samt lägg till error i catch :) 
+   console.log(user)
+
   useEffect(() => {
     const fetchData = async () => {
       if (!user?.id) return
@@ -98,14 +97,16 @@ export const MedlemsportalLayout = () => {
           headers: { "Authorization": `Bearer ${user.accessToken}` }
         })
         const data = await response.json()
+
         console.log("Dashboard response:", data)
+
         if (data.user) setUserData(data.user)
       } catch (error) {
         console.error("Error fetching dashboard data:", error)
       }
     }
     fetchData()
-  }, [user?.id])
+  }, [user?.id, user?.accessToken, setUserData])
 
   return (
     <PageWrapper>

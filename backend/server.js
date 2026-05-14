@@ -10,7 +10,7 @@ import { authenticateUser } from "./middleware/authMiddleware";
 import dashboardRoutes from "./routes/dashboardRoutes"
 
 
-//make new connection in compass!
+// [ ] Make new connection in compass!
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/membership";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;

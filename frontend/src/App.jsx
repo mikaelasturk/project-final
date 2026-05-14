@@ -1,16 +1,15 @@
-// [ ] Behöver Routewrapper path för att redirectas från logga in? Eller räcker det med index pathen?
+// [ ] Skapa premium route
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
 import { Theme } from "./themes/Theme"
 import { GlobalStyle } from "./styles/GlobalStyle"
-import { Layout } from "./components/reusable/Layout"
-import { MedlemsportalLayout } from "./layouts/layouts"
-import { ProtectedRoute } from "./components/reusable/ProtectedRoute"
-import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem, Erbjudanden} from "./pages/pages"
+import { MainPageLayout, MedlemsportalLayout } from "./layouts"
+import { ProtectedRoute } from "./routes"
+import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem, Erbjudanden } from "./pages"
 
-const AccountHomeTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gold};
+const AccountHomeTitle = styled.h1`
+  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;
@@ -25,7 +24,7 @@ export const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
+          <Route element={<MainPageLayout />}>
             <Route path="/" element={ <Navigate to="/om-medlemskap" replace />}/>
             <Route path="/om-medlemskap" element={<OmMedlemskap />}/>
             <Route path="/logga-in" element={<LoggaIn />}/>

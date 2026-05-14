@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { MembershipCard } from "../components/pages/om-medlemskap/MembershipCard"
 import { Hero } from '../components/pages/om-medlemskap/Hero'
-import { useContentStore } from "../store/contentStore"
-import { PageTitle, BodyText } from "../components/reusable/typography/typography"
+import { useContentStore } from "../store"
+import { PageTitle, BodyText } from "../components/typography"
 
 const StyledOmMedlemskap = styled.div`
    background: ${({ theme }) => theme.omMedlemskap.bgClr};
@@ -35,14 +35,14 @@ const StyledCardContainer = styled.div`
 `
 
 export const OmMedlemskap = () => {
-  const { content } = useContentStore()
+  const { omMedlemskapContent } = useContentStore()
 
   return (
     <StyledOmMedlemskap>
       <Hero/>
       <StyledContent>
-        <PageTitle text={content.heading} />
-        <BodyText text={content.text} />
+        <PageTitle text={omMedlemskapContent.heading} />
+        <BodyText text={omMedlemskapContent.text} />
         <StyledCardContainer>
           <MembershipCard variant="basic" />
           <MembershipCard variant="pro" />

@@ -1,15 +1,12 @@
 // [x] Make components for inputfields?
-// [ ] Connect form to backend
+// [x] Connect form to backend
 // [x] Connect form to content store
-// [ ] make the input field be used with enter to submit
+// [ ] Bugg: se till att submit med enter funkar
 
 import styled from 'styled-components'
-import { useContentStore } from '../../../store/contentStore'
-import { Button } from '../../reusable/ui/Button'
-import { FormInput } from "../../reusable/ui/FormInput"
-//import { CardTitle } from '../components/reusable/typography/typography'
-import { API_URL } from '../../../../Constants'
-import { useFormStore } from '../../../store/formStore'
+import { useContentStore, useFormStore } from '../../../store'
+import { Button, FormInput } from '../../ui'
+import { API_URL } from '../../../constants/Constants'
 
 const StyledForm = styled.form`
   display: flex;
@@ -17,16 +14,13 @@ const StyledForm = styled.form`
   gap: 30px;
 `
 
-const StyledContentContainer = styled.div`
-
-`
+const StyledContentContainer = styled.div``
 
 export const LogInForm = ({ handleLogin }) => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
+  const { labels, placeholders, button } = form
   const { loginData, setLoginField, setLoginError, setLoginSubmitting, resetLogin } = useFormStore()
-
-  //göra en handleSubmit
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -34,14 +28,13 @@ export const LogInForm = ({ handleLogin }) => {
 
     if (!loginData.email || !loginData.password) {
       setLoginError("Please fill in all fields")
-      // setError kopplat till backend error response?
+      // [ ] setError kopplat till backend error response?
       return
     }
 
     setLoginError('')
     setLoginSubmitting(true)
 
-      //fetch API med method POST
     try {
       const response = await fetch(`${API_URL}/users/login`, {
         method: "POST",
@@ -55,22 +48,20 @@ export const LogInForm = ({ handleLogin }) => {
       })
 
       const data = await response.json()
-       console.log("Login response status:", response.status)
-       console.log("Login response data:", data)
+      console.log("Login response status:", response.status)
+      console.log("Login response data:", data)
 
       if (!response.ok) {
-        //lägga in error response från backend
         throw new Error(data?.message || "Login failed")
       }
       console.log("Login lyckades, anropar handleLogin")
 
-      //handledLogin som "skapas" i login page
       if (handleLogin) {
         handleLogin(data.response)
         resetLogin()
       }
     } catch (error) {
-      // Error response från backend (?)
+      // [ ] Error response från backend (?)
       setLoginError(error.message || "Invalid email or password")
     } finally {
       setLoginSubmitting(false)
@@ -85,25 +76,25 @@ export const LogInForm = ({ handleLogin }) => {
           type="email" 
           id="email" 
           name="email"
-          placeholder={form.emailPlaceholder}
+          placeholder={placeholders.email}
           value={loginData.email}
-          label={form.email} 
+          label={labels.email} 
         />
         <FormInput 
           onChange={(event) => setLoginField('password', event.target.value)} 
           type="password" 
           id="password" 
           name="password"
-          placeholder={form.passwordPlaceholder}
+          placeholder={placeholders.password}
           value={loginData.password}
-          label={form.password} 
+          label={labels.password} 
         />
       </StyledContentContainer>
       {loginData.error && <p>{loginData.error}</p>}
       <Button 
         type="submit" 
-        // [ ] todo: lägga in Loggar in ... i content store
-        text={loginData.isSubmitting ? "Loggar in..." : form.button.logIn}
+        // [x] todo: lägga in Loggar in ... i content store
+        text={loginData.isSubmitting ? button.textSubmitting : button.text}
         variant="loggaIn-login" disabled={loginData.isSubmitting}
       />
     </StyledForm>

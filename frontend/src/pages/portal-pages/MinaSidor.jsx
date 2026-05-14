@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { FormInput } from "../components/reusable/ui/FormInput"
+import { FormInput } from "../../components/ui"
 
 const PageTitle = styled.h2`
   color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};

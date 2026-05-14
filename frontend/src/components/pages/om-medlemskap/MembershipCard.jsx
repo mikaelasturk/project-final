@@ -1,13 +1,11 @@
 // [x] TODO Make variant for text and button text and pass them as props to the component.
-
 // [x] TODO Make json from the data and map through it to create the cards instead of hardcoding them. (content store used instead))
-
 // [x] TODO Make the Button reusable, without hardcoded text. so it can be used for login button and not just for the membership card.
 
 import styled from "styled-components"
-import { Button } from "../../reusable/ui/Button"
-import { BodyText, CardTitle } from "../../reusable/typography/typography"
-import { useContentStore } from "../../../store/contentStore"
+import { Button } from "../../ui"
+import { BodyText, CardTitle } from "../../typography"
+import { useContentStore } from "../../../store"
 
 const StyledCard = styled.div`
   background: ${({ theme }) => theme.omMedlemskap.cards.bgClr};
@@ -49,17 +47,19 @@ const StyledDivider = styled.hr`
 `
 
 export const MembershipCard = ({ variant }) => {
-  const { content } = useContentStore()
+  const { omMedlemskapContent } = useContentStore()
+  const { cards, buttons } = omMedlemskapContent
+  const { type, price, benefit } = cards[variant]
 
   return (
     <StyledCard>
       <StyledTextContainer>
-        <BodyText text={content.cards[variant].type} />
-        <CardTitle variant="om-medlemskap" text={content.cards[variant].price} />
+        <BodyText text={type} />
+        <CardTitle variant="om-medlemskap" text={price} />
         <StyledDivider/>
-        <BodyText variant="om-medlemskap-info" text={content.cards[variant].info}/>
+        <BodyText variant="om-medlemskap-info" text={benefit}/>
       </StyledTextContainer>
-      <Button text={content.buttons[variant]} variant="card" />
+      <Button text={buttons[variant]} variant="card" />
     </StyledCard>
   )
 }

@@ -1,8 +1,8 @@
 // [x] TODO make button for going back to the membership page. 
 
 import styled from 'styled-components'
-import { BodyText, CardTitle } from '../../reusable/typography/typography'
-import { useContentStore } from '../../../store/contentStore'
+import { BodyText, CardTitle } from '../../typography'
+import { useContentStore } from '../../../store'
 import { LogInForm } from "./LogInForm"
 import { Link } from 'react-router'
 
@@ -25,9 +25,7 @@ const StyledLogInCard = styled.div`
   }
 `
 
-const StyledTextContainer = styled.div`
-
-`
+const StyledTextContainer = styled.div``
 
 const StyledLoginContainer = styled.div`
   text-align: center;
@@ -39,19 +37,20 @@ const StyledLink = styled(Link)`
 
 export const LogInCard = ({ handleLogin }) => {
   const { logInContent } = useContentStore()
-  const { heading, text, signUp} = logInContent
+  const { form } = logInContent
+  const { heading, subHeading, navigateToSignUp } = form
+  const { text, linkTo, linkText } = navigateToSignUp
 
   return (
     <StyledLogInCard >
       <StyledTextContainer>
-        <CardTitle text={heading.logIn} />
-        <BodyText text={text.logIn} />
+        <CardTitle text={heading} />
+        <BodyText text={subHeading} />
       </StyledTextContainer>
       <LogInForm handleLogin={handleLogin} />
       <StyledLoginContainer>
-        <BodyText text={signUp.text}><StyledLink to={signUp.linkTo}>{signUp.linkText}</StyledLink></BodyText>
+        <BodyText text={text}><StyledLink to={linkTo}>{linkText}</StyledLink></BodyText>
       </StyledLoginContainer>
     </StyledLogInCard>
   )
 }
-
