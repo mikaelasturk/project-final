@@ -40,6 +40,7 @@ const StyledBottomRow = styled.div`
   justify-content: space-between;
   gap: 12px;
   margin-top: auto;
+  background: ${({ theme }) => theme.konto.mainPage.events.cards.bgClr};
 `
 
 const StyledBottomRight = styled.div`
@@ -57,7 +58,7 @@ export const EventCard = () => {
     <StyledCardContainer>
       {events.map((event) => (
         <StyledCard key={events.id}>
-          <StyledImage alt=""/>
+          <StyledImage img={events.image} alt=""/>
           <EventDateTag text={event.date}/>
           <StyledTextContainer>
           <CardTitle text={events.title}/>
@@ -66,7 +67,7 @@ export const EventCard = () => {
             <BodyText variant="event" text={event.city}/>
             <StyledBottomRight>
               <BodyText variant="event" text={event.price}/>
-              <Button variant="event" text={event.button}/>
+              <Button variant="event" text={eventContent.button}/>
             </StyledBottomRight>
           </StyledBottomRow>
           </StyledTextContainer>

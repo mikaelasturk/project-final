@@ -6,6 +6,8 @@ const StyledForm = styled.form`
 
 `
 
+//[ ] implementera accountInfoForm när vi skapat patch för userData
+
 // [ ] ändra till rätt funktioner, är nu kopierat från signupform
 export const accountInfoForm = () => {
   return (
