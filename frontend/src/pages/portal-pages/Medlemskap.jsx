@@ -5,17 +5,15 @@ import { useContentStore } from "../../store"
 
 
 const CardsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  position: relative;
-  margin-left: 50px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: row;
     justify-content: center;
-    left: -7vw;
   }
 `
 

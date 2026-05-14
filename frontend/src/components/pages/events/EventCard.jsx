@@ -5,9 +5,15 @@ import { EventDateTag } from "./EventDateTag"
 import { Button } from "../../ui/"
 
 const StyledCardContainer = styled.div`
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 16px;
+  display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 400px));
+  gap: 16px;
+  justify-content: center;
+
+
+  @media (min-width: ${({theme})=> theme.breakpoints.tablet}) {
+    grid-template-columns: repeat(2, minmax(250px, 500px));
+  }
 `
 
 const StyledCard = styled.div`
@@ -17,6 +23,7 @@ const StyledCard = styled.div`
   flex-direction: column;
   gap: 10px;
   position: relative;
+  width: 100%;
 `
 
 const StyledImage = styled.img`

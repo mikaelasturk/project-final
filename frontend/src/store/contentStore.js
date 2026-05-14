@@ -151,6 +151,8 @@ const minaSidorContent = {
 } 
 
 const medlemskapContent = {
+  heading: "Medlemskap",
+  desc: "",
   // Just nu används omMedlemskapsContent här
 }
 

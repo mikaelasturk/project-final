@@ -15,6 +15,7 @@ const StyledNavbar = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `
 
 const StyledNavContentContainer = styled.div`
@@ -24,7 +25,10 @@ const StyledNavContentContainer = styled.div`
 
 const StyledLogo = styled.img`
   height: 10vh;
-  padding: 20px 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 10px 0px 10px 20px;
 `
 
 const StyledUl = styled.ul`
@@ -34,7 +38,8 @@ const StyledUl = styled.ul`
     display: flex;  
     flex-direction: row;
     gap: 30px;
-    margin: 40px 0 10px 35px;
+    align-items: center;
+    margin-left: 40px;
   }
 `
 

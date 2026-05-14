@@ -1,8 +1,10 @@
-import { Outlet, NavLink } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import styled from "styled-components"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useUserStore } from "../store"
 import { API_URL } from "../constants/Constants"
+import { SidebarHamMenu, Sidebar } from "../components/navigation/"
+
 
 const PageWrapper = styled.div`
   display: flex;
@@ -10,82 +12,53 @@ const PageWrapper = styled.div`
   background: ${({ theme }) => theme.konto.bgClr};
 `
 
-const Sidebar = styled.aside`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 28px 22px;
-  background: ${({ theme }) => theme.konto.sidebar.bgClr};
-  width: 25%;
-`
 
-const AvatarRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 0;
-  margin-bottom: 14px;
-`
-
-const Avatar = styled.div`
-
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.konto.sidebar.avatar.avatarClr};
-  flex-shrink: 0;
-`
-
-const MemberName = styled.span`
-  color: ${({ theme }) => theme.konto.sidebar.avatar.txtClr};
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-`
-
-const StyledNavLink = styled(NavLink)`
-  display: block;
-  padding: 14px 14px;
-  background: ${({ theme }) => theme.konto.sidebar.links.bgClr};
-  color: ${({ theme }) => theme.konto.sidebar.links.txtClr};
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border: 1px solid transparent;
-
-  &.active {
-    border-color: ${({ theme }) => theme.konto.sidebar.links.borderClrActive};
-  }
-`
+//clamp väljer ett min värde och ett maxvärde och anpassar innehållet till, i det här fallet 25%, när det går
 
 const StyledMain = styled.main`
   flex: 1; // Tar upp återstående utrymme bredvid sidomenyn
   background: ${({ theme }) => theme.konto.mainPage.bgClr};
-  padding: 40px;
+  padding: 40px 10px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
-
-  //> h1, > h2, > div > h1, > div > h2
-  //De träffar rubriker som är:
-  //direkta barn till huvudytan
+  // > h1, > h2, > div > h1, > div > h2
+  // De träffar rubriker som är:
+  // direkta barn till huvudytan
   // rubriker inne i en direkt underliggande div
 
-  > h1,
-  > h2,
-  > div > h1,
-  > div > h2 {
+  > h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
     text-align: center;
-    position: relative;
     color: ${({ theme }) => theme.konto.mainPage.headingClr};
-    left: -12.5vw; //Rubrikerna flyttas 12.5% till vänster av vp. För att kompensera sidomenyn (25% bred), så rubriken upplevs centrerad över hela sidan istället för bara main page.
-    > p,
-    > div > div > p {
-      color: ${({ theme }) => theme.konto.mainPage.txtClr};
-    }
+     position: relative;
+     left: -10vw;
+ } 
+ > .mina-sidor-page > div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    left: -10vw;
+ }
+
+`
+
+const PortalPageContent = styled.div`
+  > h1,
+  > div > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `
 
 export const MedlemsportalLayout = () => {
   const { setUserData, user } = useUserStore()
+  const [expanded, setExpanded] = useState(false)
 
    console.log(user)
 
@@ -108,20 +81,18 @@ export const MedlemsportalLayout = () => {
     fetchData()
   }, [user?.id, user?.accessToken, setUserData])
 
+  const handleToggle = () => {
+    setExpanded(prev => !prev)
+  }
+
   return (
     <PageWrapper>
-      <Sidebar>
-        <AvatarRow>
-          <Avatar />
-          <MemberName>{user?.firstName}</MemberName>
-        </AvatarRow>
-        <StyledNavLink to="mina-sidor">Mina Sidor</StyledNavLink>
-        <StyledNavLink to="medlemskap">Medlemskap</StyledNavLink>
-        <StyledNavLink to="events">Events</StyledNavLink>
-        <StyledNavLink to="erbjudanden">Erbjudanden</StyledNavLink>
-      </Sidebar>
+      <Sidebar />
       <StyledMain>
-        <Outlet context={{ user }} />
+        <SidebarHamMenu expanded={expanded} onToggle={handleToggle} />
+        <PortalPageContent>
+          <Outlet context={{ user }} />
+        </PortalPageContent>
       </StyledMain>
     </PageWrapper>
   )

@@ -47,31 +47,6 @@ export const Theme = {
       },
     },
   },
-  
-  //Color theme for "loggaIn" page
-  loggaIn: {
-    bgClr: 'var(--mediumPurple)',
-    txtClr: '',
-    cards: {
-      bgClr: '',
-    },
-    form: {
-      bgClr: 'var(--darkPurple)',
-      txtClr: 'var(--white)',
-      inputBgClr: 'var(--lightPurple)',
-      inputTxtClr: 'var(--darkGrey)',
-    },
-    buttons: {
-      loggaIn: {
-        bgClr: 'var(--gold)',
-        txtClr: 'var(--black)',
-      },
-      gåTillbaka: {
-        bgClr: 'var(--lightGrey)',
-        txtClr: 'var(--black)',
-      },
-    },
-  },
 
   signUp: {
     bgClr: 'var(--mediumPurple)',
@@ -91,6 +66,31 @@ export const Theme = {
     },
     buttons: {
       signUp: {
+        bgClr: 'var(--gold)',
+        txtClr: 'var(--black)',
+      },
+      gåTillbaka: {
+        bgClr: 'var(--lightGrey)',
+        txtClr: 'var(--black)',
+      },
+    },
+  },
+
+  //Color theme for "loggaIn" page
+  loggaIn: {
+    bgClr: 'var(--mediumPurple)',
+    txtClr: '',
+    cards: {
+      bgClr: '',
+    },
+    form: {
+      bgClr: 'var(--darkPurple)',
+      txtClr: 'var(--white)',
+      inputBgClr: 'var(--lightPurple)',
+      inputTxtClr: 'var(--darkGrey)',
+    },
+    buttons: {
+      loggaIn: {
         bgClr: 'var(--gold)',
         txtClr: 'var(--black)',
       },

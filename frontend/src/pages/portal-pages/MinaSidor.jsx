@@ -10,7 +10,6 @@ const PageContent = styled.div`
   flex-direction: column;
 `
 
-
 export const MinaSidor = () => {
   const { minaSidorContent } = useContentStore()
 

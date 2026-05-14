@@ -1,4 +1,4 @@
-//[ ] implementera accountInfoForm när vi skapat patch för userData
+// [ ] implementera accountInfoForm när vi skapat patch för userData
 // [ ] ändra till rätt funktioner, är nu kopierat från signupform
 
 import styled from "styled-components"

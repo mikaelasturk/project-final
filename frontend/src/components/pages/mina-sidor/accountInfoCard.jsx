@@ -12,7 +12,6 @@ const StyledCard = styled.div`
   width: 80%;
   max-width: 400px;
   padding: 80px 40px;
-  margin-top: 60px;
   border-radius: 10px;
 
   @media (min-width: ${({theme}) => theme.breakpoints.desktop}) {
