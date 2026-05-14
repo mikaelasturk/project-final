@@ -75,24 +75,35 @@ const logInContent = {
 }
 
 const minaSidorContent = {
-  heading: "Mina sidor",
-  description: "Här kan du se dina medlemskap och uppdatera din information.", 
+  heading: "Mina sidor"
 } 
+
+const medlemskapContent = {
+  heading: "Medlemskap"
+}
 
 const eventContent = {
   heading: "Events",
   description: "hallå",
-  card: {
-    image: "",
-    title: "hej",
-    description: ""
-  }
+  events: [
+    { id: 1, image: "media/images/1 (258).jpg", date: "24 mars", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Stockholm" },
+    { id: 2, date: "7 april", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Göteborg" },
+    { id: 3, date: "19 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Malmö" },
+    { id: 4, date: "31 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Stockholm" }
+  ],
+  button: "Anmäl dig här"
 }
 
+const erbjudandenContent = {
+  heading: "Erbjudanden",
+  description: "Här hittar du våra aktuella erbjudanden."
+}
 
 export const useContentStore = create(() => ({
   content: membershipContent,
   logInContent: logInContent,
   minaSidorContent: minaSidorContent,
-  eventContent: eventContent
+  medlemskapContent: medlemskapContent,
+  eventContent: eventContent,
+  erbjudandenContent: erbjudandenContent
 }))

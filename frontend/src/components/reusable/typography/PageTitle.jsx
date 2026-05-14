@@ -8,6 +8,18 @@ ${({ $variant, theme }) => $variant === "hero" && `
     font-size: 50px;
   }
 `}
+
+${({ $variant, theme}) => $variant === "konto" && `
+  
+    color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 32px;
+
+`}
 `
 
 export const PageTitle = ({ text, variant }) => {

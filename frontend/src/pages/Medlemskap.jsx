@@ -1,23 +1,16 @@
 import styled from "styled-components"
 import { MembershipCard } from "../components/pages/om-medlemskap/MembershipCard"
+import { PageTitle } from "../components/reusable/typography/PageTitle"
+import { useContentStore } from "../store/contentStore"
 
-const PageTitle = styled.h2`
-  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 40px;
-`
 
 const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  ölsfsö<dfn></dfn>
   align-items: center;
   gap: 24px;
   position: relative;
+  margin-left: 50px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: row;
@@ -27,9 +20,11 @@ const CardsWrapper = styled.div`
 `
 
 export const Medlemskap = () => {
+  const { medlemskapContent } = useContentStore()
+
   return (
     <>
-      <PageTitle>Medlemskap</PageTitle>
+      <PageTitle variant="konto" text={medlemskapContent.heading} />
       <CardsWrapper>
         <MembershipCard variant="basic" />
         <MembershipCard variant="pro" />

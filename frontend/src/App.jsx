@@ -9,8 +9,8 @@ import { MedlemsportalLayout } from "./layouts/layouts"
 import { ProtectedRoute } from "./components/reusable/ProtectedRoute"
 import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem, Erbjudanden} from "./pages/pages"
 
-const AccountHomeTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gold};
+const AccountHomeTitle = styled.h1`
+  color: ${({ theme }) => theme.konto.txtClrH1};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;

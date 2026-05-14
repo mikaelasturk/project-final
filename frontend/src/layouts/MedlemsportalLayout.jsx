@@ -15,7 +15,7 @@ const Sidebar = styled.aside`
   flex-direction: column;
   gap: 12px;
   padding: 28px 22px;
-  background: ${({ theme }) => theme.colors.darkGrey};
+  background: ${({ theme }) => theme.konto.bgClr};
   width: 25%;
 `
 
@@ -120,7 +120,7 @@ export const MedlemsportalLayout = () => {
         <StyledNavLink to="erbjudanden">Erbjudanden</StyledNavLink>
       </Sidebar>
       <StyledMain>
-        <Outlet />
+        <Outlet context={{ user }} />
       </StyledMain>
     </PageWrapper>
   )
