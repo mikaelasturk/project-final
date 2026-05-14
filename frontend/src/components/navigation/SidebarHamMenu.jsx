@@ -8,7 +8,6 @@ import { NavLink } from "react-router-dom"
 const StyledButton = styled.button`
   color: ${({ theme }) => theme.navbar.txtClr};
   background-color: transparent;
-  padding: 12px;
   border: none;
   z-index: 4001;
   position: relative;
