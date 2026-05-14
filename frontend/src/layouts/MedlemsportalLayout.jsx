@@ -121,7 +121,7 @@ export const MedlemsportalLayout = () => {
         <StyledNavLink to="erbjudanden">Erbjudanden</StyledNavLink>
       </Sidebar>
       <StyledMain>
-        <Outlet />
+        <Outlet context={{ user }} />
       </StyledMain>
     </PageWrapper>
   )

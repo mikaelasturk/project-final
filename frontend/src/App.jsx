@@ -9,7 +9,7 @@ import { ProtectedRoute } from "./routes"
 import { OmMedlemskap, LoggaIn, MinaSidor, Medlemskap, Events, BliMedlem, Erbjudanden } from "./pages"
 
 const AccountHomeTitle = styled.h1`
-  color: ${({ theme }) => theme.konto.mainPage.pageTitleClr};
+  color: ${({ theme }) => theme.konto.txtClrH1};
   text-transform: uppercase;
   letter-spacing: 10px;
   text-align: center;

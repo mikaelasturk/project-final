@@ -153,26 +153,33 @@ const minaSidorContent = {
 const medlemskapContent = {
   // Just nu används omMedlemskapsContent här
 }
+
 const eventContent = {
   heading: "Events",
-  description: "Här är våra kommande event. Som medlem får du förtur på biljetter. Håll utkik, fler event kommer snart!",
-  card: {
-   // Just nu används mockUpEvents. Ska vi här mappa från backend via nya event-GET från event-POST skapat i adminläge)
-    image: "",
-    heading: "",
-    description: "",
-    price: "",
-    place: "",
-    tag: "", // datum
-    button: ""
-  }
+  sdsc: "Här är våra kommande event. Som medlem får du förtur på biljetter. Håll utkik, fler event kommer snart!",
+  //   Just nu används mockup data. Ska vi här mappa från backend via nya event-GET från event-POST skapat i adminläge)
+  events: [
+    { id: 1, image: "media/images/1 (258).jpg", date: "24 mars", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Stockholm" },
+    { id: 2, date: "7 april", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Göteborg" },
+    { id: 3, date: "19 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Malmö" },
+    { id: 4, date: "31 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Stockholm" }
+  ],
+  button: "Anmäl dig här"
+//   card: {
+//   image: "",
+//   heading: "",
+//   description: "",
+//   price: "",
+//   place: "",
+//   tag: "", // datum
+//   button: ""
+// }
 }
 
 const erbjudandenContent = {
-  //Tom sida för tillfället
+  heading: "Erbjudanden",
+  description: "Här hittar du våra aktuella erbjudanden."
 }
-
-
 
 export const useContentStore = create(() => ({
   sharedContent: sharedContent,

@@ -131,8 +131,9 @@ export const Theme = {
 
       minaSidor: {
         form: {
-            bgClr: 'inherit', 
-            txtClr: 'var(--white)',
+          cardBgClr: 'var(--darkPurple)',
+          bgClr: 'var(--lightPurple)', 
+          txtClr: 'var(--white)',
 
             editButton: {
             bgClr: 'var(--darkGrey)',
@@ -180,7 +181,7 @@ export const Theme = {
 
       events: {
         cards: {
-          bgClr: 'var(--darkGrey)',
+          bgClr: 'var(--black)',
           textClr: {
             h2: 'var(--white)',
             p: 'var(--white)',

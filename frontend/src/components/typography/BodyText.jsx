@@ -28,6 +28,15 @@ const StyledBodyText = styled.div`
     }
   `}
 
+  ${({ $variant, theme }) => $variant === "event" && `
+    color: ${theme.konto.mainPage.events.cards.textClr.p};
+    font-size: 18px;
+  `}
+
+  ${({ $variant, theme}) => $variant === "mina-sidor" && `
+    color: ${theme.konto.mainPage.minaSidor.form.txtClr};
+    font-size: 18px;
+  `}
 `
 
 export const BodyText = ({ text, children, variant, icon }) => {
