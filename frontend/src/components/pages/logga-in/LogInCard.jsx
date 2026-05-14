@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { BodyText, CardTitle } from '../../typography'
 import { useContentStore } from '../../../store'
 import { LogInForm } from "./LogInForm"
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const StyledLogInCard = styled.div`
   background: ${({theme}) => theme.loggaIn.form.bgClr};

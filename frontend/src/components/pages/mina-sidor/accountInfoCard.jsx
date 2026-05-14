@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { BodyText } from "../../reusable/typography/BodyText"
-import { useContentStore } from "../../../store/contentStore"
-import { useOutletContext } from "react-router"
+import { BodyText } from "../../typography/BodyText"
+import { useContentStore } from "../../../store"
+import { useOutletContext } from "react-router-dom"
 
 const StyledCardContainer = styled.div`
 

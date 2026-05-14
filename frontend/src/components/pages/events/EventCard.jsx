@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { CardTitle, BodyText } from "../../reusable/typography/typography"
-import { useContentStore } from "../../../store/contentStore"
+import { CardTitle, BodyText } from "../../typography"
+import { useContentStore } from "../../../store"
 import { EventDateTag } from "./EventDateTag"
-import { Button } from "../../reusable/ui/Button"
+import { Button } from "../../ui/"
 
 const StyledCardContainer = styled.div`
    display: grid;

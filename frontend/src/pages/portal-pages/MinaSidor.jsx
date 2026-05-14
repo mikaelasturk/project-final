@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { PageTitle } from "../components/reusable/typography/PageTitle"
-import { useContentStore } from "../store/contentStore"
-import { AccountInfoCard } from "../components/pages/mina-sidor/accountInfoCard"
+import { PageTitle } from "../../components/typography"
+import { useContentStore } from "../../store"
+import { AccountInfoCard } from "../../components/pages/mina-sidor/accountInfoCard"
 
 
 const PageContent = styled.div`

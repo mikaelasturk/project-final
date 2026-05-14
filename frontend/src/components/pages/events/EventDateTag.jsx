@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { BodyText } from "../../reusable/typography/BodyText"
+import { BodyText } from "../../typography/BodyText"
 
 const StyledDateTagContainer = styled.div`
   position: absolute;

@@ -1,6 +1,6 @@
-import { EventCard } from '../components/pages/events/EventCard'
-import { PageTitle } from '../components/reusable/typography/PageTitle'
-import { useContentStore } from '../store/contentStore'
+import { EventCard } from '../../components/pages/events/EventCard'
+import { PageTitle } from '../../components/typography'
+import { useContentStore } from '../../store'
 
 
 export const Events = () => {

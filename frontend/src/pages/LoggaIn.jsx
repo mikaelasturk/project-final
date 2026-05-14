@@ -4,8 +4,7 @@
 import styled from 'styled-components'
 import { LogInCard } from '../components/pages/logga-in/LogInCard'
 import { Button } from "../components/ui"
-import { Link } from 'react-router'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PageTitle, BodyText } from '../components/typography'
 import { useContentStore, useUserStore } from '../store'
 

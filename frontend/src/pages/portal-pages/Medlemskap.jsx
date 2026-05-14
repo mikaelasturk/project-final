@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { MembershipCard } from "../components/pages/om-medlemskap/MembershipCard"
-import { PageTitle } from "../components/reusable/typography/PageTitle"
-import { useContentStore } from "../store/contentStore"
+import { MembershipCard } from "../../components/pages/om-medlemskap/MembershipCard"
+import { PageTitle } from "../../components/typography"
+import { useContentStore } from "../../store"
 
 
 const CardsWrapper = styled.div`
