@@ -1,14 +1,12 @@
+//[ ] implementera accountInfoForm när vi skapat patch för userData
+// [ ] ändra till rätt funktioner, är nu kopierat från signupform
+
 import styled from "styled-components"
-import { FormInput } from "../../reusable/ui/FormInput"
-import { CitySelector } from "../../reusable/ui/CitySelector"
+import { FormInput, CitySelector } from "../../ui"
 
 const StyledForm = styled.form`
 
 `
-
-//[ ] implementera accountInfoForm när vi skapat patch för userData
-
-// [ ] ändra till rätt funktioner, är nu kopierat från signupform
 export const accountInfoForm = () => {
   return (
     <StyledForm onSubmit={handleSubmit}>

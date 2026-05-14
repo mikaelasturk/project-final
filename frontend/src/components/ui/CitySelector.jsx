@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import { useContentStore } from '../../../store/contentStore'
+import { useContentStore, useFormStore } from '../../store'
 import Select from "react-select"
-import swedishCities from "../../../data/swedishCities.json"
+import swedishCities from "../../data/swedishCities.json"
 import { useMemo } from 'react'
-import { useFormStore } from "../../../store/formStore"
 
 // [ ] TODO: styla Select-komponenten så att den matchar resten av formuläret, t.ex. genom att ändra bakgrundsfärg, kantfärg och textfärg. Använd gärna props för att göra det enkelt att anpassa stilen. Ljuslila bakgrund på option?
 
@@ -70,8 +69,9 @@ const StyledSelect = styled(Select)`
 
 export const CitySelector = ({ label, id, name }) => {
   const { signUpData, setSignUpField } = useFormStore()
-  const { logInContent } = useContentStore()
-  const { form } = logInContent
+  const { signuUpContent } = useContentStore()
+  const { form } = signuUpContent
+  const { placeholders } = form
   const cityOptions = useMemo(() => swedishCities, [])
 
 
@@ -85,7 +85,7 @@ export const CitySelector = ({ label, id, name }) => {
         options={cityOptions}
         value={signUpData.city}
         onChange={(option) => setSignUpField('city', option)}
-        placeholder={form.cityPlaceholder}
+        placeholder={placeholders.city}
         isSearchable={true}
         isClearable={true}
         menuPlacement='auto'

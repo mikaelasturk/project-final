@@ -9,7 +9,7 @@ export const seedingUsers = async () => {
     await User.deleteMany()
   }
 
-  // Check if Carolina exists
+  // To check if Carolina exists
   const carolinaExists = await User.findOne({ email: "carolina.oldertz@gmail.com" })
   if (!carolinaExists) {
     await new User ({
@@ -25,7 +25,7 @@ export const seedingUsers = async () => {
     }).save();
   }
 
-  // Check if Mikaela exists
+  // To check if Mikaela exists
   const mikaelaExists = await User.findOne({ email: "mikaelasturk@gmail.com" })
   if (!mikaelaExists) {
     await new User ({

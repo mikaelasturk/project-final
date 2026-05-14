@@ -107,6 +107,7 @@ export const Theme = {
     txtClrH1: 'var(--gold)',
 
     sidebar: {
+      bgClr: 'var(--darkGrey)',
       avatar: {
         bgClr: 'inherit',
         avatarClr: 'var(--gold)',
@@ -155,6 +156,7 @@ export const Theme = {
         },
 
       medlemskap: {
+        // Detta ska uppdateras när vi vet mer om hur sidan ska se ut och har implementerat Stripe etc...
         cards: {
           bgClr: 'var(--darkPurple)',
           textClr: {

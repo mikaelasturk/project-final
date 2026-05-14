@@ -1,12 +1,11 @@
-import styled from 'styled-components'
-import { useContentStore } from '../../../store/contentStore'
-import { Button } from '../../reusable/ui/Button'
-import { FormInput } from "../../reusable/ui/FormInput"
-import { Fieldset } from "../../reusable/ui/Fieldset"
-import { CitySelector } from '../../reusable/ui/CitySelector'
-import { useFormStore } from '../../../store/formStore'
-import { API_URL } from '../../../../Constants' 
+//[x] todo: fixa setSignUpSubmitting för att knappen ska byta texten vid submitting läge, integrera med API fetch
+//[x] todo: fixa resetSignUp för att funka med setSignUpSubmitting, integrera med API fetch
 
+
+import styled from 'styled-components'
+import { useContentStore, useFormStore } from '../../../store'
+import { Button, FormInput, Fieldset, CitySelector } from '../../ui'
+import { API_URL } from '../../../constants/Constants' 
 
 const StyledForm = styled.form`
   display: flex;
@@ -14,17 +13,11 @@ const StyledForm = styled.form`
   gap: 10px;
 `
 
-//lägga till input firstname, lastname, city- auto search
-
 export const SignUpForm = ({ handleSignUp }) => {
-  const { logInContent } = useContentStore()
-  const { form } = logInContent
+  const { signuUpContent } = useContentStore()
+  const { form } = signuUpContent
+  const { labels, placeholders, button } = form
   const { signUpData, setSignUpField, setSignUpSubmitting, resetSignUp, setSignUpError } = useFormStore()
-
-  //[ ] todo: fixa setSignUpSubmitting för att knappen ska byta texten vid submitting läge, integrera med API fetch
-  //[ ] todo: fixa resetSignUp för att funka med setSignUpSubmitting, integrera med API fetch
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -87,9 +80,9 @@ export const SignUpForm = ({ handleSignUp }) => {
         name="firstName"
         required
         value={signUpData.firstName}
-        placeholder={form.firstNamePlaceholder}
+        placeholder={placeholders.firstName}
         onChange={(event) => setSignUpField('firstName', event.target.value)}
-        label={form.firstName} />
+        label={labels.firstName} />
       <FormInput 
         variant="signup"
         type="text" 
@@ -97,9 +90,9 @@ export const SignUpForm = ({ handleSignUp }) => {
         name="lastName"
         required
         value={signUpData.lastName}
-        placeholder={form.lastNamePlaceholder}
+        placeholder={placeholders.lastName}
         onChange={(event) => setSignUpField('lastName', event.target.value)}
-        label={form.lastName} />
+        label={labels.lastName} />
       <FormInput 
         variant="signup"
         type="email" 
@@ -107,9 +100,9 @@ export const SignUpForm = ({ handleSignUp }) => {
         name="email" 
         required
         value={signUpData.email}
-        placeholder={form.emailPlaceholder}
+        placeholder={placeholders.email}
         onChange={(event) => setSignUpField('email', event.target.value)}
-        label={form.email} />
+        label={labels.email} />
       <FormInput 
         variant="signup"
         type="password" 
@@ -117,11 +110,11 @@ export const SignUpForm = ({ handleSignUp }) => {
         name="password" 
         required
         value={signUpData.password}
-        placeholder={form.passwordPlaceholder}
+        placeholder={placeholders.password}
         onChange={(event) => setSignUpField('password', event.target.value)}
-        label={form.password} />
+        label={labels.password} />
       <CitySelector 
-        label={form.city} 
+        label={labels.city} 
         id="city" 
         name="city"
         required
@@ -134,11 +127,12 @@ export const SignUpForm = ({ handleSignUp }) => {
         required
         value={signUpData.justifyMembership}
         onChange={(event) => setSignUpField('justifyMembership', event.target.value)}
-        label={form.justifyMembershipLabel} />
+        label={labels.justifyMembership}
+        placeholder={placeholders.justifyMembership} />
       <Fieldset />
       <Button
         type="submit"
-        text={signUpData.isSubmitting ? "Skapar konto..." : form.button.signUp} 
+        text={signUpData.isSubmitting ? button.textSubmitting : button.text} 
         variant="loggaIn-login" disabled={signUpData.isSubmitting}/>
     </StyledForm>
   )

@@ -1,8 +1,4 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware' // AI
-
-// [ ] Vart ska isAuthenticated vara?
-// [ ] Ta bort persist och localStorage och använd fetch/httpOnly cookies
+// [ ] Ta bort persist/localStorage och använd fetch/httpOnly cookies
 // [ ] Använd setLoading och error i hela appen där det behövs
 // [ ] Lägg till logout funktion som tar bort user data och localStorage
 // [ ] Lägg till token expiration och refresh token logik
@@ -13,16 +9,17 @@ import { persist } from 'zustand/middleware' // AI
 // [ ] Diskutera om vi behöver en separat authStore för auth relaterad state och logik, eller om det är okej att ha allt i userStore för enkelhetens skull. AuthStore skulle kunna hantera allt som har med inloggning, tokenhantering, user roles osv att göra, medan userStore bara hanterar user profile data och dashboard data
 // [ ] Vi har diskuterat att flytta ut fetch från båda formulären till en authStore, vi kommer inte göra det nu men det kan vara värt för att tunna ut formulär komponenterna och det kan förenkla arbetet senare när vi implementerar HTTPonly cookies. Vi gör mer research då
 // [ ] Flytta upp fetchning av user-datan till userstore istället för i medlemsportalslayout
+
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
  
 const getInitialUserData = () => ({
   user: null,
   isLoading: false,
 })
 
-// localStorage.setItem('user', JSON.stringify(userData)) används inte med persist i userStore
-
 export const useUserStore = create(
-  persist( // AI
+  persist(
     (set) => ({
       ...getInitialUserData(),
 
@@ -43,7 +40,7 @@ export const useUserStore = create(
         })
     }),
     {
-      name: "user-storage" // AI
+      name: "user-storage"
     }
   )
 )

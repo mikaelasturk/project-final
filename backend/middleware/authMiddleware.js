@@ -1,5 +1,5 @@
 // [ ] todo: implement middleware for user authentication and for premium content access which is then used in dashboardRoutes
-// [ ] note: do we need to add replace bearer in req.header and test  loggedOut: true,
+// [ ] note: do we need to add replace bearer in req.header and test loggedOut: true,
 
 import { User } from '../models/User'
 

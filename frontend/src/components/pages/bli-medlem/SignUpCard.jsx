@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { Button } from '../../reusable/ui/Button'
-import { BodyText, CardTitle } from '../../reusable/typography/typography'
-import { useContentStore } from '../../../store/contentStore'
+import { BodyText, CardTitle } from '../../typography'
+import { useContentStore } from '../../../store'
 import { SignUpForm } from "./SignUpForm"
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const StyledSignUpCard = styled.div`
   background: ${({theme}) => theme.loggaIn.form.bgClr};
@@ -37,18 +36,20 @@ const StyledLink = styled(Link)`
 `
 
 export const SignUpCard = ({ handleSignUp }) => {
-  const { logInContent } = useContentStore()
-  const { heading, text, logIn } = logInContent
+  const { signuUpContent } = useContentStore()
+  const { form } = signuUpContent
+  const { heading, subHeading, navigateToLogIn } = form
+  const { text, linkTo, linkText } = navigateToLogIn
 
   return (
     <StyledSignUpCard >
       <StyledTextContainer>
-        <CardTitle text={heading.signUp} />
-        <BodyText text={text.signUp} />
+        <CardTitle text={heading} />
+        <BodyText text={subHeading} />
       </StyledTextContainer>
       <SignUpForm handleSignUp={handleSignUp} />
       <StyledSignupContainer>
-        <BodyText text={logIn.text}><StyledLink to={logIn.linkTo}>{logIn.linkText}</StyledLink></BodyText>
+        <BodyText text={text}><StyledLink to={linkTo}>{linkText}</StyledLink></BodyText>
       </StyledSignupContainer>
     </StyledSignUpCard>
   )

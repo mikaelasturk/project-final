@@ -2,14 +2,11 @@
 // [ ] Gör userStore och byt ut useState
 
 import styled from 'styled-components'
-// import { useContentStore } from '../store/contentStore'
-// import { PageTitle, BodyText } from '../components/reusable/typography/typography'
 import { LogInCard } from '../components/pages/logga-in/LogInCard'
-import { Button } from "../components/reusable/ui/Button"
-import { Link } from 'react-router'
-//import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useUserStore } from '../store/userStore'
+import { Button } from "../components/ui"
+import { Link, useNavigate } from 'react-router-dom'
+import { PageTitle, BodyText } from '../components/typography'
+import { useContentStore, useUserStore } from '../store'
 
 const StyledLoggaIn = styled.div`
   background: ${({theme}) => theme.loggaIn.bgClr};
@@ -21,20 +18,15 @@ const StyledContentContainer = styled.div`
 `
 
 export const LoggaIn = () => {
-  // const { logInContent } = useContentStore()
-  // const { heading, description } = logInContent
-  //const [user, setUser] = useState(null)
+  const { logInContent, sharedContent } = useContentStore()
+  const { pageHeading, pageSubHeading } = logInContent
   const navigate = useNavigate()
-  const { setUserData } = useUserStore() // AI
+  const { setUserData } = useUserStore()
 
 
 // [ ] ska handleLogin vara på loginCard istället för loginpage??
   const handleLogin = (userData) => {
-    //setUser(userData)
-    setUserData(userData) // AI
-    // [ ] Normally one would also set an expiration date for the token and store it in a secure cookie or in a more secure storage. But for now we just store it in localStorage for simplicity.
-    // [ ] ta bort localstorage/persist och använd fetch/httpOnly cookies
-   //localStorage.setItem("user", JSON.stringify(userData))
+    setUserData(userData)
     navigate('/konto')
   }
 
@@ -42,9 +34,9 @@ export const LoggaIn = () => {
   return (
       <StyledLoggaIn>
         <StyledContentContainer>
-          <Button as={Link} to="/" variant="go-back" text="Gå tillbaka" /> 
-          {/* <PageTitle text={heading} />
-          <BodyText text={description} /> */}
+          <Button as={Link} to="/" variant="go-back" text={sharedContent.buttons.backToMembership} /> 
+          <PageTitle text={pageHeading} />
+          <BodyText text={pageSubHeading} />
           <LogInCard handleLogin={handleLogin}/>
       </StyledContentContainer>
      </StyledLoggaIn>
