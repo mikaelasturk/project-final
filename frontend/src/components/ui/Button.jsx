@@ -1,3 +1,5 @@
+// Safari overrides the text color of buttons by default, put in color fixes here // check together
+
 import styled from "styled-components"
 
 const StyledButton = styled.button`
@@ -6,6 +8,9 @@ const StyledButton = styled.button`
   display: flex;
   padding: 8px 30px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-fill-color: currentColor;
 
   ${({ $variant, theme }) => $variant === "card" && `
     width: max-content;
@@ -13,22 +18,26 @@ const StyledButton = styled.button`
     align-self: center;
     justify-self: center;
     background: ${theme.omMedlemskap.buttons.väljMedlemskap.bgClr};
+    color: ${theme.omMedlemskap.buttons.väljMedlemskap.txtClr};
   `}
 
   ${({ $variant, theme }) => $variant === "omMedlemskap-login" && `
     background: ${theme.omMedlemskap.buttons.loggaIn.bgClr};
     justify-self: center;
+    color: ${theme.omMedlemskap.buttons.loggaIn.txtClr};
   `}
 
   ${({ $variant, theme }) => $variant === "loggaIn-login" && `
     background: ${theme.loggaIn.buttons.loggaIn.bgClr};
     justify-content: center;
+    color: ${theme.loggaIn.buttons.loggaIn.txtClr};
   `}
 
   ${({ $variant, theme}) => $variant === "go-back" && `
     display: inline;
     background: ${theme.loggaIn.buttons.gåTillbaka.bgClr};
     margin-left: 40px;
+    color: ${theme.loggaIn.buttons.gåTillbaka.txtClr};
   `}
 
   ${({ $variant, theme }) => $variant === "event" && `

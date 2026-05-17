@@ -10,8 +10,10 @@ const CardsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  padding: 40px 20px;
+ 
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
     justify-content: center;
   }

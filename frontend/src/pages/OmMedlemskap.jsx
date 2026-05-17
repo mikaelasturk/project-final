@@ -18,19 +18,16 @@ const StyledContent = styled.div`
 `
 
 const StyledCardContainer = styled.div`
-  margin: 20px;
-  gap: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
   margin-top: 50px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: flex;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
-    gap: 30px;
     justify-content: center;
-    
   }
 `
 

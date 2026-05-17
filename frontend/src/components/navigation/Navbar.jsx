@@ -64,7 +64,12 @@ export const Navbar = () => {
     navigate("/logga-in")
   }
 
-  const handleClick = () => {
+  const handleClick = (nextState) => {
+    if (typeof nextState === 'boolean') {
+      setExpanded(nextState)
+      return
+    }
+
     setExpanded(prev => !prev)
   }
 

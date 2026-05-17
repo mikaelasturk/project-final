@@ -14,22 +14,20 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 400px;
+  max-height: 450px;
+  width: 90%;
 
 
   @media (min-width: ${({theme}) => theme.breakpoints.mobile}) {
-    width: 70%;
-    max-width: 250px;
-    height: 500px;
+    max-width: 400px;
   }
 
   @media (min-width: ${({theme}) => theme.breakpoints.tablet}) {
-    width: 80%;
-    max-width: 300px;
+    min-width: 270px;
+    height: 450px;
   }
 
   @media (min-width: ${({theme}) => theme.breakpoints.desktop}) {
-    width: 90%;
     max-width: 450px;
   }
 `

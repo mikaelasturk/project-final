@@ -12,9 +12,10 @@ const StyledSignUpCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  justify-self: center;
+  //justify-self: center; // stödjs inte av safari - bytte etill margin auto istället
   padding: 80px 40px;
-  margin-top: 60px;
+  //margin-top: 60px;
+  margin: 60px auto 0;
   border-radius: 10px;
 
   @media (min-width: ${({theme}) => theme.breakpoints.desktop}) {

@@ -95,8 +95,8 @@ export const HamburgerMenu = ({ expanded, onToggle }) => {
       </StyledButton>
       <StyledNavContent $expanded={expanded}>
         <StyledHamList id="hamMenuList">
-          <li><StyledNavLink to="/om-medlemskap">{omMedlemskap}</StyledNavLink></li>
-          <li><StyledNavLink to="/konto">{konto}</StyledNavLink></li>
+          <li><StyledNavLink to="/om-medlemskap" onClick={() => onToggle(false)}>{omMedlemskap}</StyledNavLink></li>
+          <li><StyledNavLink to="/konto" onClick={() => onToggle(false)}>{konto}</StyledNavLink></li>
         </StyledHamList>
       </StyledNavContent>
     </>

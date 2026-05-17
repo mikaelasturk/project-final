@@ -1,3 +1,6 @@
+// [ ] TODO Map out user info from context to show in card
+// [ ] TODO Add edit button and functionality to update user info
+
 import styled from "styled-components"
 import { BodyText } from "../../typography/BodyText"
 import { useContentStore } from "../../../store"
@@ -28,7 +31,6 @@ const StyledTextContainer = styled.div`
   width: 100%;
   margin: 10px 0;
 `
-
 export const AccountInfoCard = () => {
   const { logInContent } = useContentStore()
   const { form } = logInContent
@@ -36,6 +38,7 @@ export const AccountInfoCard = () => {
 
   return (
     <StyledCardContainer>
+      
       <StyledCard>
         <BodyText variant="mina-sidor" text={form.firstName}/>
         <StyledTextContainer>

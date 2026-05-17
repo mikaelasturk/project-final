@@ -131,7 +131,7 @@ export const Theme = {
 
       minaSidor: {
         form: {
-          cardBgClr: 'var(--darkPurple)',
+          cardBgClr: 'var(--mediumPurple)',
           bgClr: 'var(--lightPurple)', 
           txtClr: 'var(--white)',
 

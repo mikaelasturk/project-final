@@ -47,6 +47,8 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    //-webkit-text-size-adjust: 100%;
+    //text-size-adjust: 100%;
   }
 
   body {

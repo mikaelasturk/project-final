@@ -81,7 +81,12 @@ export const MedlemsportalLayout = () => {
     fetchData()
   }, [user?.id, user?.accessToken, setUserData])
 
-  const handleToggle = () => {
+  const handleToggle = (nextState) => {
+    if (typeof nextState === 'boolean') {
+      setExpanded(nextState)
+      return
+    }
+
     setExpanded(prev => !prev)
   }
 

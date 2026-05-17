@@ -166,7 +166,7 @@ const eventContent = {
     { id: 3, date: "19 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Malmö" },
     { id: 4, date: "31 maj", title: "Event title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "100kr", city: "Stockholm" }
   ],
-  button: "Anmäl dig här"
+  button: "Anmäl dig här (inaktiv)"
 //   card: {
 //   image: "",
 //   heading: "",

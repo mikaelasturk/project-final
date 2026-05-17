@@ -96,10 +96,10 @@ export const SidebarHamMenu = ({ expanded, onToggle }) => {
       </StyledButton>
       <StyledNavContent $expanded={expanded}>
         <StyledHamList id="hamMenuList">
-          <li><StyledNavLink to="/konto/mina-sidor">MINA SIDOR</StyledNavLink></li>
-          <li><StyledNavLink to="/konto/medlemskap">MEDLEMSKAP</StyledNavLink></li>
-          <li><StyledNavLink to="/konto/events">EVENTS</StyledNavLink></li>
-          <li><StyledNavLink to="/konto/erbjudanden">ERBJUDANDEN</StyledNavLink></li>
+          <li><StyledNavLink to="/konto/mina-sidor" onClick={() => onToggle(false)}>MINA SIDOR</StyledNavLink></li>
+          <li><StyledNavLink to="/konto/medlemskap" onClick={() => onToggle(false)}>MEDLEMSKAP</StyledNavLink></li>
+          <li><StyledNavLink to="/konto/events" onClick={() => onToggle(false)}>EVENTS</StyledNavLink></li>
+          <li><StyledNavLink to="/konto/erbjudanden" onClick={() => onToggle(false)}>ERBJUDANDEN</StyledNavLink></li>
         </StyledHamList>
       </StyledNavContent>
     </>
