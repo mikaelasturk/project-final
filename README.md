@@ -137,35 +137,33 @@ womenation-membership/
 │   ├── seedingDatabase/
 │   └── server.js
 ├── frontend/
+│   ├── index.html
 │   ├── public/
 │   │   └── media/
 │   │       ├── icons/
 │   │       ├── images/
 │   │       └── logo/
 │   ├── src/
+│   │   ├── App.jsx
 │   │   ├── components/
 │   │   │   ├── navigation/
 │   │   │   ├── pages/
-│   │   │   │   ├── bli-medlem/
-│   │   │   │   ├── events/
-│   │   │   │   ├── logga-in/
-│   │   │   │   ├── mina-sidor/
-│   │   │   │   └── om-medlemskap/
 │   │   │   ├── typography/
 │   │   │   └── ui/
 │   │   ├── constants/
 │   │   ├── data/
 │   │   ├── layouts/
+│   │   ├── main.jsx
 │   │   ├── pages/
 │   │   │   └── portal-pages/
 │   │   ├── routes/
 │   │   ├── store/
 │   │   ├── styles/
 │   │   └── themes/
-└── md_files/
-    ├── README.md
-    ├── PLANNING.md
-    └── TODO.md
+│   └── vite.config.js
+├── PLANNING.md
+├── README.md
+└── TODO.md
 ```
 
 <a id="s2"></a>
