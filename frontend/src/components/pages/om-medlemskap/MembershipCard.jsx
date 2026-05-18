@@ -1,0 +1,65 @@
+// [x] TODO Make variant for text and button text and pass them as props to the component.
+// [x] TODO Make json from the data and map through it to create the cards instead of hardcoding them. (content store used instead))
+// [x] TODO Make the Button reusable, without hardcoded text. so it can be used for login button and not just for the membership card.
+
+import styled from "styled-components"
+import { Button } from "../../ui"
+import { BodyText, CardTitle } from "../../typography"
+import { useContentStore } from "../../../store"
+
+const StyledCard = styled.div`
+  background: ${({ theme }) => theme.omMedlemskap.cards.bgClr};
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 450px;
+  width: 90%;
+
+
+  @media (min-width: ${({theme}) => theme.breakpoints.mobile}) {
+    max-width: 400px;
+  }
+
+  @media (min-width: ${({theme}) => theme.breakpoints.tablet}) {
+    min-width: 270px;
+    height: 450px;
+  }
+
+  @media (min-width: ${({theme}) => theme.breakpoints.desktop}) {
+    max-width: 450px;
+  }
+`
+const StyledTextContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  color: ${({theme}) => theme.omMedlemskap.cards.txtClr};
+`
+
+const StyledDivider = styled.hr`
+  height: 0.5px;
+  margin: 10px 0;
+`
+
+export const MembershipCard = ({ variant }) => {
+  const { omMedlemskapContent } = useContentStore()
+  const { cards, buttons } = omMedlemskapContent
+  const { type, price, benefit } = cards[variant]
+
+  return (
+    <StyledCard>
+      <StyledTextContainer>
+        <BodyText text={type} />
+        <CardTitle variant="om-medlemskap" text={price} />
+        <StyledDivider/>
+        <BodyText variant="om-medlemskap-info" text={benefit}/>
+      </StyledTextContainer>
+      <Button text={buttons[variant]} variant="card" />
+    </StyledCard>
+  )
+}
+
+

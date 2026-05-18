@@ -1,8 +1,17 @@
+// [ ] todo: connect user routes, premium user routes, and dashboard routes to server
+// [x] todo: implement listEndpoints from express-list-endpoints to "/"
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import listEndpoints from "express-list-endpoints";
+import userRoutes from "./routes/userRoutes"
+import { authenticateUser } from "./middleware/authMiddleware";
+import dashboardRoutes from "./routes/dashboardRoutes"
 
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project";
+
+// [ ] Make new connection in compass!
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/membership";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
 
@@ -13,8 +22,17 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello Technigo!");
+  const endpoints = listEndpoints(app)
+  res.json({
+    message: "Welcome to Womenation API",
+    endpoints: endpoints
+  })
 });
+
+
+app.use("/users", userRoutes)
+app.use("/dashboard", authenticateUser, dashboardRoutes)
+
 
 // Start the server
 app.listen(port, () => {
