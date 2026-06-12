@@ -22,14 +22,18 @@ const StyledButton = styled.button`
 `
 
 const StyledNavContent = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 4000;
   padding: 0 24px 42px 24px;
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.navbar.bgClr};
   align-items: center;
-  width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
   height: 50vh;
   transition: transform 0.3s ease-in-out, opacity 0.5s ease;
   transform: ${({ $expanded }) => ($expanded ? "translateY(0)" : "translateY(-100%)")};

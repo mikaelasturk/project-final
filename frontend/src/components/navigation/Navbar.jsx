@@ -76,8 +76,16 @@ export const Navbar = () => {
   return (
     <StyledNavbar $expanded={expanded}>
       <StyledNavContentContainer>
-      <a href={logoHref} target="_blank" rel="noreferrer">
-        <StyledLogo src="/media/logo/Color logo - no background.png"/>
+      <a
+        href={logoHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Womenation website (opens in a new tab)"
+      >
+        <StyledLogo
+          src="/media/logo/Color logo - no background.png"
+          alt="Womenation website"
+        />
       </a>
       <StyledUl>
         <StyledItems><NavLink to="/om-medlemskap">{links.omMedlemskap}</NavLink></StyledItems>
