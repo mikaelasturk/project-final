@@ -27,7 +27,7 @@ Womenation Membership is a fullstack membership platform where users can sign up
 
 <a id="1"></a>
 ## 🚀 Live Demo
-- [Frontend](https://womenation-membership.netlify.app/)
+- [Frontend](https://project-final-medlemsportal.netlify.app/)
 - [Backend API](https://womenation-membership.onrender.com)
 
 <a id="2"></a>
